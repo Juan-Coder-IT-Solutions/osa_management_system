@@ -25,6 +25,7 @@
   <link href="../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link href="../assets/vendor/sweet-alert/sweetalert2.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
@@ -42,7 +43,7 @@
 
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                  <img src="assets/img/logo.png" alt="">
+                  <!-- <img src="assets/img/logo.png" alt=""> -->
                   <span class="d-none d-lg-block" style="text-align: center;">OSA MANAGEMENT SYSTEM</span>
                 </a>
               </div><!-- End Logo -->
@@ -56,21 +57,21 @@
                     <p class="text-center small">Enter your personal details to create account</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form  method="POST" id="form_submit" class="row g-3 needs-validation" novalidate>
                     <div class="col-12">
                       <label for="yourName" class="form-label">First Name</label>
-                      <input type="text" name="name" class="form-control" id="fname" required>
+                      <input type="text" name="fname" class="form-control" id="fname" required>
                       <div class="invalid-feedback">Please, enter your name!</div>
                     </div>
 
                     <div class="col-12">
                       <label for="yourName" class="form-label">Middle Name</label>
-                      <input type="text" name="name" class="form-control" id="mname" required>
+                      <input type="text" name="mname" class="form-control" id="mname" required>
                     </div>
 
                     <div class="col-12">
                       <label for="yourName" class="form-label">Last Name</label>
-                      <input type="text" name="name" class="form-control" id="lname" required>
+                      <input type="text" name="lname" class="form-control" id="lname" required>
                       <div class="invalid-feedback">Please, enter your name!</div>
                     </div>
 
@@ -115,33 +116,38 @@
   <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="../assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="../assets/vendor/php-email-form/validate.js"></script>
-
+  <script src="../assets\vendor\sweet-alert\sweetalert2.all.min.js"></script>
   <!-- Template Main JS File -->
-  <script src="../assets/js/sweetalert.min.js"></script>
   <script src="../assets/js/main2.js"></script>
 
 </body>
-
 <script>
 
-    function createAccount(){
-        var fname = $("#fname").val();
-        var mname = $("#mname").val();
-        var lname = $("#lname").val();
-        var username = $("#username").val();
-        var password = $("#password").val();
-
-        $.post("../ajax/addAccount.php",{
-            fname : fname,
-            mname : mname,
-            lname : lname,
-            username : username,
-            password : password
-        },function(data){
-            alert(data);
-        });
-    }
-   
+$("#form_submit").submit(function(e){
+  e.preventDefault();
+  $("#btn_submit").prop('disabled', true);
+    $.ajax({
+        type:"POST",
+        url:"../ajax/addAccount.php",
+        data:$("#form_submit").serialize(),
+        success:function(data){
+          if(data == 1){
+            Swal.fire(
+              'The Internet?',
+              'That thing is still around?',
+              'success'
+            )
+            $('#form_submit')[0].reset();
+          }else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+            })
+          }
+        }
+      });
+  });
 </script>
 
 </html>
