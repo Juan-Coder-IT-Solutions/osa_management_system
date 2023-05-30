@@ -31,21 +31,13 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <script src="assets\vendor\sweet-alert\sweetalert2.all.min.js"></script>
 
   <!-- Template Main CSS File -->
   <link href="assets/datatables/jquery.dataTables.min.css" rel="stylesheet" />
   <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/vendor/sweet-alert/sweetalert2.min.css" rel="stylesheet">
 </head>
-
-<style>
-  #footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 80%;
-  }
-</style>
-
 
 <body>
    <!-- Template Main JS File -->
