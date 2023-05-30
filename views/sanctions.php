@@ -102,7 +102,7 @@ $("#form_submit_add_form").submit(function(e){
                     icon: 'success',
                     title: 'All Good!',
                     text: 'Sanction Added Successfully',
-                })
+                });
             	$('#form_submit_add_form')[0].reset();
             	get_datatable();
             }else{
@@ -110,7 +110,7 @@ $("#form_submit_add_form").submit(function(e){
                     icon: 'warning',
                     title: 'Opps!',
                     text: 'Failed Query!',
-                })
+                });
            }
            $("#modalAddSanction").modal("hide");
            $("#form_btn_add_form").prop('disabled', false);
