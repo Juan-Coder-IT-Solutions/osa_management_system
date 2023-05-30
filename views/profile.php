@@ -71,11 +71,8 @@
                         <img src="assets/img/profile-img.jpg" alt="Profile">
                         <div class="pt-2" style="margin-bottom: 10px;">
                         
-                        <form role="form" method="POST" id="form_upload">
-                            <button type="submit" id="form_btn_upload" class="btn btn-primary" title="Upload new profile image"><i class="bi bi-upload"></i></button>
-                        </form>
-
-                            <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                        <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                         </div>
 
                         <input type="file" class="form-control" id="customFile" />
@@ -222,17 +219,4 @@ $("#form_submit_password").submit(function(e){
       });
 });
 
-$("#form_upload").submit(function(e){
-    e.preventDefault();
-    $("#form_btn_upload").prop('disabled', true);
-    $.ajax({
-        type:"POST",
-        url:"ajax/upload_image.php",
-        data:$("#form_submit_password").serialize(),
-        success:function(data){
-           alert(data);
-           $("#form_btn_upload").prop('disabled', false);
-        }
-      });
-});
 </script>
