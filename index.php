@@ -37,6 +37,15 @@
   <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
+<style>
+  #footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 80%;
+  }
+</style>
+
 
 <body>
    <!-- Template Main JS File -->
