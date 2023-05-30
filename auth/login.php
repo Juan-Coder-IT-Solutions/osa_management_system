@@ -115,9 +115,7 @@
             url:"../ajax/login.php",
             data:$("#form_submit").serialize(),
             success:function(data){
-            
                 window.location.href = "../index.php?page=dashboard";
-          
                 $("#btn_submit").prop('disabled', false);
             }
           });
