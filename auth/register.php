@@ -28,7 +28,6 @@
 
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -43,7 +42,7 @@
 
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                  <!-- <img src="../assets/img/logo.png" alt=""> -->
+                  <img src="assets/img/logo.png" alt="">
                   <span class="d-none d-lg-block" style="text-align: center;">OSA MANAGEMENT SYSTEM</span>
                 </a>
               </div><!-- End Logo -->
@@ -53,38 +52,47 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
-                    <p class="text-center small">Enter your username & password to login</p>
+                    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
+                    <p class="text-center small">Enter your personal details to create account</p>
                   </div>
 
-                  <form role="form" method="POST" id="form_submit" class="row g-3 needs-validation" novalidate >
+                  <form class="row g-3 needs-validation" novalidate>
+                    <div class="col-12">
+                      <label for="yourName" class="form-label">First Name</label>
+                      <input type="text" name="name" class="form-control" id="fname" required>
+                      <div class="invalid-feedback">Please, enter your name!</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="yourName" class="form-label">Middle Name</label>
+                      <input type="text" name="name" class="form-control" id="mname" required>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="yourName" class="form-label">Last Name</label>
+                      <input type="text" name="name" class="form-control" id="lname" required>
+                      <div class="invalid-feedback">Please, enter your name!</div>
+                    </div>
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Username</label>
-                      <input type="text" name="username" class="form-control" id="yourUsername" required>
-                      <div class="invalid-feedback">Please enter your username.</div>
+                      <input type="text" name="username" class="form-control" id="username" required>
+                      <div class="invalid-feedback">Please choose a username.</div>
                     </div>
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
+                      <input type="password" name="password" class="form-control" id="password" required>
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>
 
                     <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                        <label class="form-check-label" for="rememberMe">Remember me</label>
-                      </div>
+                      <button class="btn btn-primary w-100" onclick="createAccount()">Create Account</button>
                     </div>
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit" id="btn_submit">Login</button>
-                    </div>
-                    <div class="col-12">
-                      <p class="small mb-0">Don't have account? <a href="register.php">Create an account</a></p>
+                      <p class="small mb-0">Already have an account? <a href="login.php">Log in</a></p>
                     </div>
                   </form>
-
                 </div>
               </div>
             </div>
@@ -109,26 +117,31 @@
   <script src="../assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
- <!--  <script src="../assets/js/main.js"></script> -->
- <script src="../assets/js/main2.js"></script>
+  <script src="../assets/js/sweetalert.min.js"></script>
+  <script src="../assets/js/main2.js"></script>
+
 </body>
 
-<script type="text/javascript">
-    $("#form_submit").submit(function(e){
-        e.preventDefault();
-        $("#btn_submit").prop('disabled', true);
-        $.ajax({
-            type:"POST",
-            url:"../ajax/login.php",
-            data:$("#form_submit").serialize(),
-            success:function(data){
-            
-                window.location.href = "../index.php?page=dashboard";
-          
-                $("#btn_submit").prop('disabled', false);
-            }
-          });
-    });
+<script>
+
+    function createAccount(){
+        var fname = $("#fname").val();
+        var mname = $("#mname").val();
+        var lname = $("#lname").val();
+        var username = $("#username").val();
+        var password = $("#password").val();
+
+        $.post("../ajax/addAccount.php",{
+            fname : fname,
+            mname : mname,
+            lname : lname,
+            username : username,
+            password : password
+        },function(data){
+            alert(data);
+        });
+    }
+   
 </script>
 
 </html>
