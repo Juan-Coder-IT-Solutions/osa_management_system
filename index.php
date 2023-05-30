@@ -1,3 +1,10 @@
+<?php 
+    include 'core/config.php';
+    $user_id = $_SESSION['user_id'];
+    $page = (isset($_GET['page']) && $_GET['page'] !='') ? $_GET['page'] : '';
+    userlogin($_SESSION['user_id']);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,7 +54,7 @@
   <?php require_once 'components/sidebar.php' ?>  
 
   <!-- ======= MAIN BODY ======= -->
-  <?php require_once 'views/dashboard.php' ?>
+  <?php require_once 'routes/routes.php' ?>
 
   <!-- ======= Footer ======= -->
   <?php require_once 'components/footer.php' ?>  

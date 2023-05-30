@@ -36,7 +36,7 @@
                                 <div class="p-5">
 
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4"> E-Center: Brgy Zone-6 Health Documentation System</h1>
+                                        <h1 class="h4 text-gray-900 mb-4"></h1>
                                     </div>
                                     <h5 style="color: #d12727;display: none;" id="error">Incorrect Username & Password</h5>
                                     <form role="form" method="POST" id="form_submit">
