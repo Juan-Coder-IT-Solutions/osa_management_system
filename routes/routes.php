@@ -15,10 +15,11 @@
 		require $view.'violations.php';
 	}else if($page == 'offenses'){
 		require $view.'offenses.php';
+	}else if($page == 'academic_year'){
+		require $view.'academic_year.php';
 	}else if($page == 'profile'){
 		require $view.'profile.php';
-	}
-	else{
+	}else{
 		require $view.'404.php';
 	}
 ?>

@@ -31,6 +31,31 @@ function studentFullName($student_id){
 	return $row["student_lname"].", ".$row["student_fname"]." ".$row["student_mname"];
 }
 
+function violationName($violation_id){
+	global $mysqli;
+	$fetch = $mysqli->query("SELECT * FROM tbl_violations WHERE violation_id='$violation_id'") or die(mysqli_error());
+	$row = $fetch->fetch_array();
+
+	return $row["violation_name"];
+}
+
+function sanctionName($sanction_id){
+	global $mysqli;
+	$fetch = $mysqli->query("SELECT * FROM tbl_sanctions WHERE sanction_id='$sanction_id'") or die(mysqli_error());
+	$row = $fetch->fetch_array();
+
+	return $row["sanction_name"];
+}
+
+function ayName($ay_id){
+	global $mysqli;
+	$fetch = $mysqli->query("SELECT * FROM tbl_academic_year WHERE ay_id='$ay_id'") or die(mysqli_error());
+	$row = $fetch->fetch_array();
+
+	return $row["ay_name"];
+}
+
+
 function usernameChecker($username,$update_user_id){
 	global $mysqli;
 	if($update_user_id>0){

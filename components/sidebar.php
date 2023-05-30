@@ -33,7 +33,7 @@
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
+        <a class="nav-link collapsed" href="index.php?page=violations">
           <i class="bi bi-card-list"></i>
           <span>Violation</span>
         </a>
@@ -47,12 +47,19 @@
       </li><!-- End Login Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-error-404.html">
+        <a class="nav-link collapsed" href="index.php?page=offenses">
           <i class="bi bi-dash-circle"></i>
           <span>Offenses</span>
         </a>
       </li><!-- End Error 404 Page Nav -->
 
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.php?page=academic_year">
+          <i class="bi bi-dash-circle"></i>
+          <span>Academic Year</span>
+        </a>
+      </li><!-- End Error 404 Page Nav -->
     </ul>
 
   </aside><!-- End Sidebar-->
