@@ -56,7 +56,8 @@
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form role="form" method="POST" id="form_submit" class="row g-3 needs-validation" novalidate >
+
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Username</label>
                       <input type="text" name="username" class="form-control" id="yourUsername" required>
@@ -76,7 +77,7 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Login</button>
+                      <button class="btn btn-primary w-100" type="submit" id="btn_submit">Login</button>
                     </div>
                     <div class="col-12">
                       <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
@@ -116,8 +117,26 @@
   <script src="../assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="../assets/js/main.js"></script>
-
+ <!--  <script src="../assets/js/main.js"></script> -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </body>
+
+<script type="text/javascript">
+    $("#form_submit").submit(function(e){
+        e.preventDefault();
+        $("#btn_submit").prop('disabled', true);
+        $.ajax({
+            type:"POST",
+            url:"../ajax/login.php",
+            data:$("#form_submit").serialize(),
+            success:function(data){
+            
+                window.location.href = "../index.php?page=dashboard";
+          
+                $("#btn_submit").prop('disabled', false);
+            }
+          });
+    });
+</script>
 
 </html>
