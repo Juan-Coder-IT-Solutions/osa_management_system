@@ -44,4 +44,15 @@ function usernameChecker($username,$update_user_id){
 
 	return $result;
 }
+
+function userData($user_id,$field){
+	global $mysqli;
+	$fetch = $mysqli->query("SELECT * FROM tbl_users WHERE user_id='$user_id'") or die(mysqli_error());
+	$row = $fetch->fetch_array();
+	$value = $row[$field];
+
+	return $value;
+}
+
+
 ?>

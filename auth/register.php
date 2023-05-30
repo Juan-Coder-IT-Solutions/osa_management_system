@@ -132,18 +132,25 @@ $("#form_submit").submit(function(e){
         data:$("#form_submit").serialize(),
         success:function(data){
           if(data == 1){
-            Swal.fire(
-              'The Internet?',
-              'That thing is still around?',
-              'success'
-            )
+
+            Swal.fire({
+                title: 'Account Created',
+                text: "Proceed to login?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Proceed'
+            }).then((result) => {
+              if(result.isConfirmed){
+                window.location.href = "login.php";
+              }
+            });
             $('#form_submit')[0].reset();
           }else{
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
               text: 'Something went wrong!',
-            })
+            });
           }
         }
       });

@@ -43,12 +43,65 @@
 </main><!-- End #main -->
 
 <?php require_once 'views/modals/add_sanction.php'; ?>
-<?php require_once 'views/modals/update_course.php'; ?>
+<?php require_once 'views/modals/update_sanction.php'; ?>
 
 <script type="text/javascript">
 $(document).ready(function() { 
 	get_datatable();
 });
+
+$("#form_submit_update_form").submit(function(e){
+    e.preventDefault();
+    $("#form_btn_update_form").prop('disabled', true);
+
+    Swal.fire({
+        title: 'Update',
+        text: "Are you sure you want to proceed?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Proceed'
+    }).then((result) => {
+        if(result.isConfirmed){
+            $.ajax({
+                type:"POST",
+                url:"ajax/update_sanction.php",
+                data:$("#form_submit_update_form").serialize(),
+                success:function(data){
+                    console.log(data);
+                    if(data==1){
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'All Good!',
+                            text: 'Sanction Updated Successfully',
+                        });
+                        get_datatable();
+                    }else{
+                        Swal.fire({
+                            icon: 'danger',
+                            title: 'Opps!',
+                            text: 'Failed Query',
+                        });
+                }
+                $("#form_btn_update_form").prop('disabled', false);
+                }
+            });  
+        }
+        $("#modalUpdateSanction").modal("hide");
+    });
+});
+
+function show_details_modal(primary_id){
+    $("#modalUpdateSanction").modal('show');
+    $.post("ajax/get_sanction.php",
+        {
+            sanction_id:primary_id
+        },function(data){
+           	var get_data = JSON.parse(data);
+            $("#update_sanction_id").val(get_data[0].sanction_id);
+            $("#update_sanction_name").val(get_data[0].sanction_name);
+            $("#update_sanction_desc").val(get_data[0].sanction_desc);
+    });
+}
 
 
 function delete_entry(){

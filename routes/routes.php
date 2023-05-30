@@ -15,7 +15,10 @@
 		require $view.'violations.php';
 	}else if($page == 'offenses'){
 		require $view.'offenses.php';
-	}else{
+	}else if($page == 'profile'){
+		require $view.'profile.php';
+	}
+	else{
 		require $view.'404.php';
 	}
 ?>
