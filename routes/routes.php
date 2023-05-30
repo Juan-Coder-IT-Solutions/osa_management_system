@@ -5,7 +5,11 @@
 		require $view.'dashboard.php';
 	}else if($page == 'users'){
 		require $view.'users.php';
+	}else if($page == 'students'){
+		require $view.'students.php';
+	}else if($page == 'courses'){
+		require $view.'courses.php';
 	}else{
-		//require $view.'404.php';
+		require $view.'404.php';
 	}
 ?>
