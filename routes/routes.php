@@ -15,6 +15,8 @@
 		require $view.'violations.php';
 	}else if($page == 'offenses'){
 		require $view.'offenses.php';
+	}else if($page == 'academic_year'){
+		require $view.'academic_year.php';
 	}else{
 		require $view.'404.php';
 	}
