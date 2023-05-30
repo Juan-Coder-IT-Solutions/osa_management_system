@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title><?=$user_id;?></title>
+  <title>Osa Management System</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -33,10 +33,15 @@
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
+  <link href="assets/datatables/jquery.dataTables.min.css" rel="stylesheet" />
   <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
+   <!-- Template Main JS File -->
+  
+  <script src="assets/js/main2.js"></script>
+  <script src="assets/datatables/jquery.dataTables.min.js"></script>
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -47,8 +52,8 @@
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main2.js"></script>
+ 
+  
 
   <!-- ======= Header ======= -->
   <?php require_once 'components/topbar.php' ?>
