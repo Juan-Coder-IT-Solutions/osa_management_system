@@ -3,7 +3,7 @@
       <h1>Students</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Pages</a></li>
+          <li class="breadcrumb-item">Pages</li>
           <li class="breadcrumb-item active">Students</li>
         </ol>
       </nav>
@@ -204,7 +204,7 @@ function get_datatable(){
 	    },
 	    {
 	        "mRender":function(data, type, row){
-	            return "<button class='btn btn-success' style='padding: 5px 5px 5px 8px;' data-toggle='tooltip' title='Update Record' onclick='show_details_modal("+row.student_id+")'>Update</button>";
+	            return "<button class='btn btn-success' style='padding: 5px 5px 5px 8px;' data-toggle='tooltip' title='Update Record' onclick='show_details_modal("+row.student_id+")'><i class='bi bi-pencil-square'></i></button>";
 	        }
 	    },
 	    {

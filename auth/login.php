@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
 
+.background { 
+  background-image: url("../assets/img/chmsc.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -31,22 +40,24 @@
 
 </head>
 
-<body>
+<body class="background">
 
   <main>
     <div class="container">
-
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
+              <div class="d-flex justify-content-center">
+                <img src="../assets/img/CHMSU.png" alt="" style="width: 70%;">
+              </div>
+
               <div class="d-flex justify-content-center py-4">
-                <a href="index.html" class="logo d-flex align-items-center w-auto">
-                  <!-- <img src="../assets/img/logo.png" alt=""> -->
+                <a class="logo d-flex align-items-center w-auto">
                   <span class="d-none d-lg-block" style="text-align: center;">OSA MANAGEMENT SYSTEM</span>
                 </a>
-              </div><!-- End Logo -->
+              </div>
 
               <div class="card mb-3">
 

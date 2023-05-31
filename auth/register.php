@@ -35,7 +35,6 @@
 
   <main>
     <div class="container">
-
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
           <div class="row justify-content-center">
@@ -118,6 +117,7 @@
   <script src="../assets/vendor/php-email-form/validate.js"></script>
   <script src="../assets\vendor\sweet-alert\sweetalert2.all.min.js"></script>
   <!-- Template Main JS File -->
+  <!-- <script src="../assets/js/main2.js"></script> -->
   <script src="../assets/js/main2.js"></script>
 
 </body>
