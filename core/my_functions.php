@@ -79,5 +79,38 @@ function userData($user_id,$field){
 	return $value;
 }
 
+function countUser(){
+	global $mysqli;
+	$fetch = $mysqli->query("SELECT count(user_id) AS counter FROM tbl_users") or die(mysqli_error());
+	$row = $fetch->fetch_array();
+
+	return $row['counter'];
+}
+
+function countStudents(){
+	global $mysqli;
+	$fetch = $mysqli->query("SELECT count(student_id) AS counter FROM tbl_students") or die(mysqli_error());
+	$row = $fetch->fetch_array();
+	
+	return $row['counter'];
+}
+
+function countOffenses(){
+	global $mysqli;
+	$fetch = $mysqli->query("SELECT count(offense_id) AS counter FROM tbl_offenses") or die(mysqli_error());
+	$row = $fetch->fetch_array();
+	
+	return $row['counter'];
+}
+
+function countSanction(){
+	global $mysqli;
+	$fetch = $mysqli->query("SELECT count(sanction_id) AS counter FROM tbl_sanctions") or die(mysqli_error());
+	$row = $fetch->fetch_array();
+	
+	return $row['counter'];
+
+}
+
 
 ?>
