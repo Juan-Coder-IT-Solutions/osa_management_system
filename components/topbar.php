@@ -33,7 +33,7 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>User Account</h6>
+              <h6><?=userFullName($user_id)?></h6>
               <span</span>
             </li>
             <li>

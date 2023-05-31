@@ -31,7 +31,7 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  <script src="assets\vendor\sweet-alert\sweetalert2.all.min.js"></script>
+  <script src="assets/vendor/sweet-alert/sweetalert2.all.min.js"></script>
 
   <!-- Template Main CSS File -->
   <link href="assets/datatables/jquery.dataTables.min.css" rel="stylesheet" />
@@ -40,8 +40,7 @@
 </head>
 
 <body>
-   <!-- Template Main JS File -->
-  
+  <!-- Template Main JS File -->
   <script src="assets/js/main2.js"></script>
   <script src="assets/datatables/jquery.dataTables.min.js"></script>
   <!-- Vendor JS Files -->
