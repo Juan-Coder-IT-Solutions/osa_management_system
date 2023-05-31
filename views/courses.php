@@ -126,7 +126,7 @@ function delete_entry(){
                     Swal.fire({
                         icon: 'success',
                         title: 'All Good!',
-                        text: 'Course deleted uccessfully',
+                        text: 'Course deleted successfully',
                     });
                     get_datatable();
                 }else{

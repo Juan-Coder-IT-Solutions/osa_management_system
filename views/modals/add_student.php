@@ -8,21 +8,22 @@
 			<form role="form" method="POST" id="form_submit_add_form" class="row g-3 needs-validation" novalidate>
 				<div class="modal-body">
 					<div class="row">
-	                    <div class="col-4">
+
+	                    <div class="col-12">
 	                      <label class="form-label">First Name</label>
 	                      <div class="input-group has-validation">
 	                        <input type="text" name="student_fname" class="form-control" required>
 	                      </div>
 	                    </div>
 
-	                    <div class="col-4">
+	                    <div class="col-12">
 	                      <label class="form-label">Middle Name</label>
 	                      <div class="input-group has-validation">
 	                        <input type="text" name="student_mname" class="form-control" required>
 	                      </div>
 	                    </div>
 
-	                    <div class="col-4">
+	                    <div class="col-12">
 	                      <label class="form-label">Last Name</label>
 	                      <div class="input-group has-validation">
 	                        <input type="text" name="student_lname" class="form-control" required>
@@ -31,21 +32,21 @@
 	                </div>
 
 	                <div class="row">
-	                	 <div class="col-4">
+	                	 <div class="col-12">
 	                      <label class="form-label">Student Code</label>
 	                      <div class="input-group has-validation">
 	                        <input type="text" name="student_code" class="form-control" required>
 	                      </div>
 	                    </div>
 
-	                    <div class="col-4">
+	                    <div class="col-12">
 	                      <label class="form-label">Birthday</label>
 	                      <div class="input-group has-validation">
 	                        <input type="date" name="student_birthdate" class="form-control" required>
 	                      </div>
 	                    </div>
 
-	                    <div class="col-4">
+	                    <div class="col-12">
 	                        <label class="form-label">Gender</label>
 			                  <select name="student_gender" class="form-select">
 			                    <option value="Male">Male</option>

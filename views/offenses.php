@@ -56,21 +56,41 @@ $(document).ready(function() {
 $("#form_submit_update_form").submit(function(e){
     e.preventDefault();
     $("#form_btn_update_form").prop('disabled', true);
-    $.ajax({
-        type:"POST",
-        url:"ajax/update_offense.php",
-        data:$("#form_submit_update_form").serialize(),
-        success:function(data){
-            if(data==1){
-            	alert("Success Update!");
-            	get_datatable();
-            	$("#modalUpdate").modal("hide");
-            }else{
-            	alert("Failed Query!");
-           }
-           $("#form_btn_update_form").prop('disabled', false);
+
+    Swal.fire({
+        title: 'Update',
+        text: "Are you sure you want to proceed?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Proceed'
+    }).then((result) => {
+        if(result.isConfirmed){
+            $.ajax({
+                type:"POST",
+                url:"ajax/update_offense.php",
+                data:$("#form_submit_update_form").serialize(),
+                success:function(data){
+                    if(data==1){
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'All good!',
+                            text: 'Offenses updated successfully'
+                        });
+                        get_datatable();
+                        $("#modalUpdate").modal("hide");
+                    }else{
+                        Swal.fire({
+                            icon: 'danger',
+                            title: 'Opps!',
+                            text: 'Failed Query!'
+                        });
+                }
+                $("#form_btn_update_form").prop('disabled', false);
+                }
+            });
         }
-      });
+        
+    });
 });
 
 function show_details_modal(primary_id){
@@ -95,21 +115,35 @@ function delete_entry(){
     }).get();
     id = [];
 
-    var confirmation = confirm("Are you sure you want to delete?");
-
-    if(confirmation == true){
-        $.post("ajax/delete_offenses.php",
-        {
-            id:checkedValues
-        },function(data){
-            if(data == 1){
-                alert("Success delete");
+    Swal.fire({
+        title: 'Delete',
+        text: "Are you sure you want to proceed?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Proceed'
+    }).then((result) => {
+        if(result.isConfirmed){
+            $.post("ajax/delete_offenses.php",
+            {
+                id:checkedValues
+            },function(data){
+                if(data == 1){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'All good!',
+                        text: 'Offenses deleted successfully'
+                    });
                 get_datatable();
-            }else{
-               alert("Failed Query!");
-            }   
-        });
-    }
+                }else{
+                    Swal.fire({
+                        icon: 'danger',
+                        title: 'Opps!',
+                        text: 'Failed query!'
+                    });
+                }   
+            });
+        }
+    }); 
 }
 
 $("#form_submit_add_form").submit(function(e){
@@ -121,16 +155,24 @@ $("#form_submit_add_form").submit(function(e){
         data:$("#form_submit_add_form").serialize(),
         success:function(data){
             if(data==1){
-            	alert("Success Add!");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'All good!',
+                    text: 'Offenses added successfully'
+                });
             	document.getElementById("form_submit_add_form").reset();
             	get_datatable();
             }else{
-            	alert("Failed Query!");
+                Swal.fire({
+                    icon: 'danger',
+                    title: 'Opps!',
+                    text: 'Failed Query!'
+                });
            }
            $("#modalAdd").modal("hide");
-           $("#form_btn_add_form").prop('disabled', false);
         }
       });
+      $("#form_btn_add_form").prop('disabled', false);
 });
 
 function get_datatable(){
