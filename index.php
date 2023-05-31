@@ -31,7 +31,7 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  <script src="assets\vendor\sweet-alert\sweetalert2.all.min.js"></script>
+  <script src="assets/vendor/sweet-alert/sweetalert2.all.min.js"></script>
 
   <!-- Template Main CSS File -->
   <link href="assets/datatables/jquery.dataTables.min.css" rel="stylesheet" />
@@ -41,12 +41,13 @@
 
 <body>
    <!-- Template Main JS File -->
+   <script src="assets/js/main2.js"></script>
   
-  <script src="assets/js/main2.js"></script>
   <script src="assets/datatables/jquery.dataTables.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
   <script src="assets/vendor/chart.js/chart.umd.js"></script>
   <script src="assets/vendor/echarts/echarts.min.js"></script>
   <script src="assets/vendor/quill/quill.min.js"></script>
