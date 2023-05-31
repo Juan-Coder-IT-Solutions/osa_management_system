@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <span class="d-none d-lg-block">Osa Management</span>
+        <span class="d-none d-lg-block">OSA Management</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -33,7 +33,7 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
+              <h6>User Account</h6>
               <span</span>
             </li>
             <li>
