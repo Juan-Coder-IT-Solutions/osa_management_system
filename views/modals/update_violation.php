@@ -5,7 +5,7 @@
 			  	<h5 class="modal-title">Update data</h5>
 			  	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<form role="form" method="POST" id="form_submit_update_form" class="row g-3 needs-validation" novalidate>
+			<form role="form" method="POST" id="form_submit_update_form">
 				<div class="modal-body">
 						<input type="hidden" id="update_violation_id" name="update_violation_id">
 

@@ -64,21 +64,19 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-               
+                  <form id="uploadProfile" method="post" enctype="multipart/form-data">
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
-                        <img src="assets/img/profile-img.jpg" alt="Profile">
-                        <div class="pt-2" style="margin-bottom: 10px;">
-                        
-                        <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
-                        </div>
-
+                        <img src="assets/img/profile-img.jpg" alt="Profile" style="margin-bottom: 10px;">
                         <input type="file" class="form-control" id="customFile" />
+                          <div class="pt-2" style="margin-bottom: 10px;">
+                            <button href="#" type="submit" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></button>
+                            <button href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></button>
+                          </div>
                       </div>
                     </div>
-                
+                  </form>
 
                 <form role="form" method="POST" id="form_submit">
 
@@ -217,6 +215,26 @@ $("#form_submit_password").submit(function(e){
            $("#form_btn_password").prop('disabled', false);
         }
       });
+});
+
+$("#uploadProfile").submit(function(e){
+  e.preventDefault();
+
+	$.ajax({
+		type:"POST",
+		url:"ajax/upload_Profile.php",
+		data:new FormData(this),
+		contentType:false,
+		cache:false,
+		processData:false,
+		success:function(data){
+			alert(data);
+		}
+	});
+})
+
+$("#profileImage").change(function() {
+    readURL(this);
 });
 
 </script>
