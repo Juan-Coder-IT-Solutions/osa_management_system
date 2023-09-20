@@ -18,53 +18,89 @@
         </a>
       </li>
 
-      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.php?page=exemplary_students">
+          <i class="bi bi-question-circle"></i>
+          <span>Application For Exemplary Students</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.php?page=calendar_of_activities">
+          <i class="bi bi-question-circle"></i>
+          <span>Calendar of Activities</span>
+        </a>
+      </li>
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=courses">
           <i class="bi bi-envelope"></i>
           <span>Courses</span>
         </a>
-      </li><!-- End Contact Page Nav -->
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.php?page=good_moral_releasing">
+          <i class="bi bi-question-circle"></i>
+          <span>Good Moral Releasing</span>
+        </a>
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=students">
-          <i class="bi bi-question-circle"></i>
+          <i class="bi bi-person"></i>
           <span>Students</span>
         </a>
-      </li><!-- End F.A.Q Page Nav -->
-
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=violations">
           <i class="bi bi-card-list"></i>
           <span>Violation</span>
         </a>
-      </li><!-- End Register Page Nav -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=sanctions">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Sanctions</span>
         </a>
-      </li><!-- End Login Page Nav -->
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.php?page=services">
+          <i class="bi bi-question-circle"></i>
+          <span>Services Under OSA</span>
+        </a>
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=offenses">
           <i class="bi bi-dash-circle"></i>
           <span>Offenses</span>
         </a>
-      </li><!-- End Error 404 Page Nav -->
+      </li>
 
-      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.php?page=organizational_officers">
+          <i class="bi bi-question-circle"></i>
+          <span>Organizational Officers</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.php?page=osa_checklist_requirements">
+          <i class="bi bi-question-circle"></i>
+          <span>OSA Checklist Requirements</span>
+        </a>
+      </li>
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=users">
           <i class="bi bi-person"></i>
           <span>Users</span>
         </a>
-      </li><!-- End Profile Page Nav -->
-
-
-      
+      </li>
     </ul>
 
   </aside><!-- End Sidebar-->
