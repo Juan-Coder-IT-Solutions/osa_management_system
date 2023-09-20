@@ -11,21 +11,21 @@
 	                    <div class="col-12">
 	                    	<input type="hidden" id="update_student_id" name="update_student_id" class="form-control" required>
 
-	                      <label class="form-label">First Name</label>
+	                      <label for="update_student_fname" class="form-label">First Name</label>
 	                      <div class="input-group has-validation">
 	                        <input type="text" id="update_student_fname" name="update_student_fname" class="form-control" required>
 	                      </div>
 	                    </div>
 
 	                    <div class="col-12">
-	                      <label class="form-label">Middle Name</label>
+	                      <label for="update_student_mname" class="form-label">Middle Name</label>
 	                      <div class="input-group has-validation">
 	                        <input type="text" id="update_student_mname"  name="update_student_mname" class="form-control" required>
 	                      </div>
 	                    </div>
 
 	                    <div class="col-12">
-	                      <label class="form-label">Last Name</label>
+	                      <label for="update_student_lname" class="form-label">Last Name</label>
 	                      <div class="input-group has-validation">
 	                        <input type="text" id="update_student_lname" name="update_student_lname" class="form-control" required>
 	                      </div>
@@ -34,21 +34,21 @@
 
 	                <div class="row">
 	                	 <div class="col-12">
-	                      <label class="form-label">Student Code</label>
+	                      <label for="update_student_code" class="form-label">Student Code</label>
 	                      <div class="input-group has-validation">
 	                        <input type="text" id="update_student_code" name="update_student_code" class="form-control" required>
 	                      </div>
 	                    </div>
 
 	                    <div class="col-12">
-	                      <label class="form-label">Birthday</label>
+	                      <label for="update_student_birthdate" class="form-label">Birthday</label>
 	                      <div class="input-group has-validation">
 	                        <input type="date" id="update_student_birthdate" name="update_student_birthdate" class="form-control" required>
 	                      </div>
 	                    </div>
 
 	                    <div class="col-12">
-	                        <label class="form-label">Gender</label>
+	                        <label for="update_student_gender" class="form-label">Gender</label>
 			                  <select id="update_student_gender" name="update_student_gender" class="form-select">
 			                    <option value="Male">Male</option>
 			                    <option value="Female">Female</option>
@@ -57,19 +57,19 @@
 	                </div>
 
                     <div class="col-12">
-                    	<label class="form-label">Address</label>
+                    	<label for="update_student_address" class="form-label">Address</label>
 		                <textarea class="form-control" placeholder="Address" id="update_student_address" name="update_student_address"></textarea>
                     </div>
 
                     <div class="col-12">
-                      <label class="form-label">Contact #</label>
+                      <label for="update_student_contact_num" class="form-label">Contact #</label>
                       <div class="input-group has-validation">
                         <input type="number" id="update_student_contact_num" name="update_student_contact_num" class="form-control" required>
                       </div>
                     </div>
 
                     <div class="col-12">
-                       	<label class="form-label">Course</label>
+                       	<label for="update_course_id" class="form-label">Course</label>
 		                  <select id="update_course_id" name="update_course_id" class="form-select">
 		                    <?php 
 		                    	$fetch_course = $mysqli->query("SELECT * FROM tbl_courses ORDER BY course_name ASC") or die(mysqli_error());

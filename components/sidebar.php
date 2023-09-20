@@ -12,11 +12,19 @@
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.php?page=users">
-          <i class="bi bi-person"></i>
-          <span>User</span>
+        <a class="nav-link collapsed" href="index.php?page=academic_year">
+          <i class="bi bi-calendar"></i>
+          <span>Academic Year</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
+
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.php?page=courses">
+          <i class="bi bi-envelope"></i>
+          <span>Courses</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=students">
@@ -25,12 +33,6 @@
         </a>
       </li><!-- End F.A.Q Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="index.php?page=courses">
-          <i class="bi bi-envelope"></i>
-          <span>Courses</span>
-        </a>
-      </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=violations">
@@ -53,13 +55,16 @@
         </a>
       </li><!-- End Error 404 Page Nav -->
 
-
+      
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.php?page=academic_year">
-          <i class="bi bi-dash-circle"></i>
-          <span>Academic Year</span>
+        <a class="nav-link collapsed" href="index.php?page=users">
+          <i class="bi bi-person"></i>
+          <span>Users</span>
         </a>
-      </li><!-- End Error 404 Page Nav -->
+      </li><!-- End Profile Page Nav -->
+
+
+      
     </ul>
 
   </aside><!-- End Sidebar-->

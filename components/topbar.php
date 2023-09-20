@@ -1,7 +1,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.php?page=dashboard" class="logo d-flex align-items-center">
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <span class="d-none d-lg-block">OSA Management</span>
       </a>
@@ -28,7 +28,7 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <!-- <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> -->
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?=userFullName($user_id)?></span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?=user_info("user_fname",$user_id)." ".user_info("user_lname",$user_id)?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
