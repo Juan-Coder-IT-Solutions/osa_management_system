@@ -19,6 +19,16 @@
 		require $view.'academic_year.php';
 	}else if($page == 'profile'){
 		require $view.'profile.php';
+
+
+	}else if($page == 'exemplary_students'){
+		require $view.'exemplary_students.php';
+	}else if($page == 'calendar_of_activities'){
+	 	require $view.'calendar_of_activities.php';
+	}else if($page == 'good_moral_releasing'){
+	 	require $view.'good_moral_releasing.php';
+
+
 	}else{
 		require $view.'404.php';
 	}
