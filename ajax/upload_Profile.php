@@ -1,36 +1,44 @@
+
 <?php
 include '../core/config.php';
 $user_id = $_SESSION['user_id'];
 
-$img_tmp = $_FILES["profileImage"]["tmp_name"];
-$img_name_ = $_FILES["profileImage"]["name"];
-$img_ext = pathinfo($img_name_, PATHINFO_EXTENSION);
-$img_quality = ($_FILES['profileImage']['size'] <= 500000)?100:30;
-$raw_id = $_REQUEST['ing_u_raw_id'];
+$getData = $mysqli->query("SELECT profile_img FROM tbl_users where user_id");
+$getexistUser = $getData->fetch_array();
 
-$img_name = "PROF-".$user_id.".PNG";
+$valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
+$path = '../assets/upload/'; // upload directory
+
+$img = $_FILES['profileImage']['name'];
+$tmp = $_FILES['profileImage']['tmp_name'];
+
+$img_name = "-PROF-".$user_id.".PNG";
 $slug = $img_name;
-$dir = "../../assets/upload/".$img_name; 
 
-echo upload_compressedImage($user_id, $img_tmp, $dir, $slug);
+// get uploaded file's extension
+$ext = strtolower(pathinfo($img, PATHINFO_EXTENSION));
 
-function upload_compressedImage($user_id, $img_tmp, $targetPath, $slug) {
-    $fetch_user = $mysqli->query("SELECT `profile_img` FROM tbl_users WHERE user_id='$user_id'");
-	$row = $fetch_user->fetch_array();
-	$current_slug = "../../assets/upload/".$row['slug'];
-    
-	if(move_uploaded_file($img_tmp, $targetPath)) {
-		if(!empty($row['image'])){
-			if(file_exists($current_slug)){
-				@unlink($current_slug);
-			}
-		}
-		$mysqli->query("UPDATE tbl_users set `profile_img`='$slug' where user_id='$user_id' ");
-		
-		return "image uploaded!";
-	}else{
-		return "Image upload failed!";
-	}
+// can upload same image using rand function
+$final_image = rand(1000,1000000).$slug;
+
+// check's valid format
+if(in_array($ext, $valid_extensions)){ 
+    $path = $path.$final_image; 
+
+    if(move_uploaded_file($tmp,$path)){
+        if(!empty($row['profile_img'])){
+            if(file_exists($path)){
+                @unlink($path);
+            }
+        }
+
+    //insert form data in the database
+    $update = $mysqli->query("UPDATE tbl_users set profile_img='$final_image' where user_id='$user_id' ");
+
+    echo 1;
+    }
+}else {
+    echo 2;
 }
 
 ?>

@@ -1,3 +1,8 @@
+<?php
+  $user_id = $_SESSION['user_id'];
+  $getData = $mysqli->query("SELECT * FROM tbl_users where user_id='$user_id'");
+  $rowData = $getData->fetch_array();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <body>
@@ -23,7 +28,7 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+              <div id="imagePreviewProfile"></div>
               <h2><?=userFullName($user_id)?></h2>
             </div>
           </div>
@@ -56,7 +61,7 @@
                   <h5 class="card-title">Profile Details</h5>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                    <div class="col-lg-3 col-md-4 label ">Full Name </div>
                     <div class="col-lg-9 col-md-8"><?=userFullName($user_id)?></div>
                   </div>
                 </div>
@@ -66,15 +71,20 @@
                   <!-- Profile Edit Form -->
                   <form id="uploadProfile" method="post" enctype="multipart/form-data">
                     <div class="row mb-3">
-                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                      <label class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
-                        <img src="assets/img/profile-img.jpg" alt="Profile" style="margin-bottom: 10px;">
-                        <input type="file" class="form-control" id="customFile" />
+                        
+                      <div id="imagePreview" >
+		                  </div>
+
+                        <input type="file" name="profileImage" class="form-control" id="customFile" />
+                        
                           <div class="pt-2" style="margin-bottom: 10px;">
-                            <button href="#" type="submit" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></button>
-                            <button href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></button>
+                            <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-upload"></i></button>
+                            <button class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
                           </div>
                       </div>
+                      
                     </div>
                   </form>
 
@@ -153,6 +163,13 @@
 
 </html>
 <script>
+
+$(document).ready(function (e) {
+  $('#imagePreviewProfile').html("<img src='assets/upload/<?=$rowData['profile_img']?>' alt='Profile' class='rounded-circle'>");
+	$('#imagePreview').html("<img src='assets/upload/<?=$rowData['profile_img']?>' alt='Profile' style='margin-bottom: 10px;'>");
+});
+
+
     $("#form_submit").submit(function(e){
     e.preventDefault();
     $("#form_btn_update_form").prop('disabled', true);
@@ -228,7 +245,25 @@ $("#uploadProfile").submit(function(e){
 		cache:false,
 		processData:false,
 		success:function(data){
-			alert(data);
+        if(data == 1){
+          Swal.fire({
+          title: 'Update Profile',
+          text: "Are you sure you want to proceed?",
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Proceed'
+        }).then((result) => {
+          if(result.isConfirmed){
+            location.reload();
+          }
+        });
+      }else{
+        Swal.fire({
+            icon: 'danger',
+            title: 'Opps!',
+            text: 'Failed Query!',
+        });
+      }
 		}
 	});
 })
