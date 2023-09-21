@@ -5,7 +5,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Services</li>
+          <li class="breadcrumb-item active">Organizational</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -41,8 +41,8 @@
     </section>
 </main><!-- End #main -->
 
-<?php require_once 'views/modals/add_services.php'; ?>
-<?php require_once 'views/modals/update_services.php'; ?>
+<?php require_once 'views/modals/add_organizational.php'; ?>
+<?php require_once 'views/modals/update_organizational.php'; ?>
 
 <script type="text/javascript">
     $(document).ready(function(){
