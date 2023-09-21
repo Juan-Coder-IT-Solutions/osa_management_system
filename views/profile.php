@@ -81,7 +81,7 @@
                         
                           <div class="pt-2" style="margin-bottom: 10px;">
                             <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-upload"></i></button>
-                            <button class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                            <!-- <button class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button> -->
                           </div>
                       </div>
                       

@@ -1,11 +1,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Organizational Officers</h1>
+      <h1>Checklist Requirements</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Services</li>
+          <li class="breadcrumb-item active">Checklist Requirements</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -41,8 +41,8 @@
     </section>
 </main><!-- End #main -->
 
-<?php require_once 'views/modals/add_services.php'; ?>
-<?php require_once 'views/modals/update_services.php'; ?>
+<?php require_once 'views/modals/add_checklist_requirements.php'; ?>
+<?php require_once 'views/modals/update_checklist_requirements.php'; ?>
 
 <script type="text/javascript">
     $(document).ready(function(){
