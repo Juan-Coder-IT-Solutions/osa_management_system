@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.1.25-MariaDB)
 # Database: osa_db
-# Generation Time: 2023-09-20 06:54:51 +0000
+# Generation Time: 2023-09-20 08:39:21 +0000
 # ************************************************************
 
 
@@ -27,11 +27,21 @@ DROP TABLE IF EXISTS `tbl_academic_year`;
 
 CREATE TABLE `tbl_academic_year` (
   `ay_id` int(11) NOT NULL AUTO_INCREMENT,
-  `ay_name` int(11) NOT NULL,
+  `ay_name` varchar(75) NOT NULL DEFAULT '',
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ay_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+LOCK TABLES `tbl_academic_year` WRITE;
+/*!40000 ALTER TABLE `tbl_academic_year` DISABLE KEYS */;
+
+INSERT INTO `tbl_academic_year` (`ay_id`, `ay_name`, `date_added`)
+VALUES
+	(1,'2022-2023','2023-09-20 15:35:22'),
+	(2,'2023-2024','2023-09-20 15:42:36');
+
+/*!40000 ALTER TABLE `tbl_academic_year` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table tbl_activities
@@ -41,12 +51,24 @@ DROP TABLE IF EXISTS `tbl_activities`;
 
 CREATE TABLE `tbl_activities` (
   `activity_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `activity_desc` text NOT NULL,
+  `ay_id` int(11) NOT NULL,
+  `activity_desc` varchar(150) NOT NULL DEFAULT '',
   `activity_date` date NOT NULL,
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`activity_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+LOCK TABLES `tbl_activities` WRITE;
+/*!40000 ALTER TABLE `tbl_activities` DISABLE KEYS */;
+
+INSERT INTO `tbl_activities` (`activity_id`, `ay_id`, `activity_desc`, `activity_date`, `date_added`)
+VALUES
+	(2,1,'qweqwe','2023-09-20','2023-09-20 16:04:07'),
+	(3,1,'dssd 1232132','2023-09-22','2023-09-20 16:04:16'),
+	(4,2,'retydfg','2023-09-20','2023-09-20 16:04:24');
+
+/*!40000 ALTER TABLE `tbl_activities` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table tbl_checklist_requirements
@@ -97,10 +119,20 @@ DROP TABLE IF EXISTS `tbl_exemplary_students`;
 CREATE TABLE `tbl_exemplary_students` (
   `es_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
+  `es_desc` varchar(150) NOT NULL DEFAULT '',
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`es_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+LOCK TABLES `tbl_exemplary_students` WRITE;
+/*!40000 ALTER TABLE `tbl_exemplary_students` DISABLE KEYS */;
+
+INSERT INTO `tbl_exemplary_students` (`es_id`, `student_id`, `es_desc`, `date_added`)
+VALUES
+	(2,3,'qweqwe qweqwe','2023-09-20 15:20:51');
+
+/*!40000 ALTER TABLE `tbl_exemplary_students` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table tbl_good_moral
@@ -110,11 +142,25 @@ DROP TABLE IF EXISTS `tbl_good_moral`;
 
 CREATE TABLE `tbl_good_moral` (
   `good_moral_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ay_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
+  `good_modal_desc` varchar(150) NOT NULL DEFAULT '',
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`good_moral_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+LOCK TABLES `tbl_good_moral` WRITE;
+/*!40000 ALTER TABLE `tbl_good_moral` DISABLE KEYS */;
+
+INSERT INTO `tbl_good_moral` (`good_moral_id`, `ay_id`, `student_id`, `good_modal_desc`, `date_added`)
+VALUES
+	(1,2,11,'wewewee23','2023-09-20 16:26:52'),
+	(3,1,8,'123123123123','2023-09-20 16:28:14'),
+	(4,1,8,'wewe','2023-09-20 16:28:39'),
+	(5,1,3,'yuyu','2023-09-20 16:32:04');
+
+/*!40000 ALTER TABLE `tbl_good_moral` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table tbl_offenses
