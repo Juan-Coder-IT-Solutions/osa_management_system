@@ -3,9 +3,6 @@
 include '../core/config.php';
 $user_id = $_SESSION['user_id'];
 
-$getData = $mysqli->query("SELECT profile_img FROM tbl_users where user_id");
-$getexistUser = $getData->fetch_array();
-
 $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
 $path = '../assets/upload/'; // upload directory
 

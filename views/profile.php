@@ -165,41 +165,45 @@
 <script>
 
 $(document).ready(function (e) {
-  $('#imagePreviewProfile').html("<img src='assets/upload/<?=$rowData['profile_img']?>' alt='Profile' class='rounded-circle'>");
+  displayImg();
 	$('#imagePreview').html("<img src='assets/upload/<?=$rowData['profile_img']?>' alt='Profile' style='margin-bottom: 10px;'>");
 });
 
+function displayImg(){
+  $('#imagePreviewProfile').html("<img src='assets/upload/<?=$rowData['profile_img']?>' alt='Profile' class='rounded-circle'>");
+}
 
-    $("#form_submit").submit(function(e){
-    e.preventDefault();
-    $("#form_btn_update_form").prop('disabled', true);
-    $.ajax({
-        type:"POST",
-        url:"ajax/update_profile.php",
-        data:$("#form_submit").serialize(),
-        success:function(data){
-            if(data==1){
-            	Swal.fire({
-                    icon: 'success',
-                    title: 'All Good!',
-                    text: 'Profile Updated Successfully',
-                });
-            }else if(data==2){
-            	Swal.fire({
-                    icon: 'warning',
-                    title: 'Opps!',
-                    text: 'Username already exist!',
-                });
-            }else{
-            	Swal.fire({
-                    icon: 'danger',
-                    title: 'Opps!',
-                    text: 'Failed query!',
-                });
-           }
-           $("#form_btn_update_form").prop('disabled', false);
-        }
-      });
+
+$("#form_submit").submit(function(e){
+  e.preventDefault();
+  $("#form_btn_update_form").prop('disabled', true);
+  $.ajax({
+      type:"POST",
+      url:"ajax/update_profile.php",
+      data:$("#form_submit").serialize(),
+      success:function(data){
+          if(data==1){
+            Swal.fire({
+                  icon: 'success',
+                  title: 'All Good!',
+                  text: 'Profile Updated Successfully',
+              });
+          }else if(data==2){
+            Swal.fire({
+                  icon: 'warning',
+                  title: 'Opps!',
+                  text: 'Username already exist!',
+              });
+          }else{
+            Swal.fire({
+                  icon: 'danger',
+                  title: 'Opps!',
+                  text: 'Failed query!',
+              });
+          }
+          $("#form_btn_update_form").prop('disabled', false);
+      }
+    });
 });
 
 $("#form_submit_password").submit(function(e){
