@@ -5,7 +5,7 @@
 			  	<h5 class="modal-title">Add data</h5>
 			  	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<form role="form" method="POST" id="form_submit_add_form" class="row g-3 needs-validation" novalidate>
+			<form role="form" method="POST" id="form_submit_add_form">
 				<div class="modal-body">
 					
                     <div class="col-12">

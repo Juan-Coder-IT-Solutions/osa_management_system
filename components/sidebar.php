@@ -20,35 +20,35 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=exemplary_students">
-          <i class="bi bi-question-circle"></i>
+          <i class="bi bi-file-richtext"></i>
           <span>Application For Exemplary Students</span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=calendar_of_activities">
-          <i class="bi bi-question-circle"></i>
+          <i class="bi bi-calendar-event"></i>
           <span>Calendar of Activities</span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=courses">
-          <i class="bi bi-envelope"></i>
+          <i class="bi bi-collection"></i>
           <span>Courses</span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=good_moral_releasing">
-          <i class="bi bi-question-circle"></i>
+          <i class="bi bi-file-earmark-person"></i>
           <span>Good Moral Releasing</span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=students">
-          <i class="bi bi-person"></i>
+          <i class="bi bi-people-fill"></i>
           <span>Students</span>
         </a>
       </li>
@@ -69,7 +69,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=services">
-          <i class="bi bi-question-circle"></i>
+          <i class="bi bi-file-earmark-ruled"></i>
           <span>Services Under OSA</span>
         </a>
       </li>
@@ -83,21 +83,21 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=organizational_officers">
-          <i class="bi bi-question-circle"></i>
+          <i class="bi bi-person-lines-fill"></i>
           <span>Organizational Officers</span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=osa_checklist_requirements">
-          <i class="bi bi-question-circle"></i>
+          <i class="bi bi-list-check"></i>
           <span>OSA Checklist Requirements</span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=users">
-          <i class="bi bi-person"></i>
+          <i class="bi bi-person-circle"></i>
           <span>Users</span>
         </a>
       </li>

@@ -1,3 +1,8 @@
+  <?php
+    $user_id = $_SESSION['user_id'];
+    $getUser = $mysqli->query("SELECT * FROM tbl_users WHERE user_id ='$user_id' ");
+    $row = $getUser->fetch_array();
+  ?>
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -27,14 +32,14 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <!-- <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> -->
+          <img src="assets/upload/<?=$row['profile_img']?>" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2"><?=user_info("user_fname",$user_id)." ".user_info("user_lname",$user_id)?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>User Account</h6>
-              <span></span>
+              <h6><?=userFullName($user_id)?></h6>
+              <span</span>
             </li>
             <li>
               <hr class="dropdown-divider">
