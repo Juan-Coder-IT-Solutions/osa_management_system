@@ -8,9 +8,9 @@
 				<form role="form" method="POST" id="form_submit_add_form">
 					<div class="modal-body">
 						<div class="col-12">
-							<label class="form-label">Description</label>
+							<label class="form-label">Service Description</label>
 							<div class="input-group">
-								<input type="text" name="ay_name" class="form-control" required>
+								<input type="text" name="service_desc" class="form-control" required>
 							</div>
 						</div>	                    
 					</div>
