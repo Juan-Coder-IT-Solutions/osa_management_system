@@ -172,7 +172,7 @@ $("#form_submit_add_form").submit(function(e){
 });
 
 function get_datatable(){
-$("#datatable").DataTable().destroy();
+    $("#datatable").DataTable().destroy();
     $("#datatable").DataTable({
         "responsive": true,
         "processing": true,

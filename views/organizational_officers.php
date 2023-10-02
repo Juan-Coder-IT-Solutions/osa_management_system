@@ -16,7 +16,7 @@
             <div class="card-body">
             	<div class="col-sm-12" style="padding: 10px;">
             		<div class="btn-group" role="group" aria-label="Basic mixed styles example" style="float: right;">
-	                	<button type="button" class="btn btn-primary" onclick="add()">Add</button>
+	                	<button type="button" class="btn btn-primary" onclick="add_entry()">Add</button>
 	                	<button type="button" class="btn btn-danger" onclick="delete_entry()">Delete</button>
 	              	</div>
             	</div> <br><br><br>
@@ -25,9 +25,10 @@
               	<table class="table table-striped datatable" id="datatable">
                 <thead>
 	                <tr>
-	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check_user')"></th>
+	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check')"></th>
 	                	<th scope="col"></th>
-	                    <th scope="col">Services</th>
+	                    <th scope="col">Student</th>
+                      <th scope="col">OF Type</th>
 	                    <th scope="col">Date Added</th>
 	                </tr>
 	            </thead>
@@ -41,15 +42,130 @@
     </section>
 </main><!-- End #main -->
 
-<?php require_once 'views/modals/add_organizational.php'; ?>
-<?php require_once 'views/modals/update_organizational.php'; ?>
+<?php require_once 'views/modals/add_organizational_officers.php'; ?>
+<?php require_once 'views/modals/update_organizational_officers.php'; ?>
 
 <script type="text/javascript">
-    $(document).ready(function(){
+$(document).ready(function(){
+  get_datatable();
+});
 
+function add_entry(){
+    $("#modalAdd").modal('show');
+}
+
+function show_details_modal(primary_id){
+    $("#modalUpdate").modal('show');
+    $.post("ajax/get_organizational_officers.php",
+        {
+            of_id:primary_id
+        },function(data){
+           	var get_data = JSON.parse(data);
+            $("#update_of_id").val(get_data[0].of_id);
+            $("#update_student_id").val(get_data[0].student_id);
+            $("#update_of_type").val(get_data[0].of_type);
     });
+}
 
-    function add(){
-        $("#modalAdd").modal('show');
-    }
+
+function delete_entry(){
+    var checkedValues = $('.check:checkbox:checked').map(function() {
+        return this.value;
+    }).get();
+    id = [];
+
+    Swal.fire({
+        title: 'Delete',
+        text: "Are you sure you want to proceed?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Proceed'
+    }).then((result) => {
+        if(result.isConfirmed){
+            $.post("ajax/delete_organizational_officers.php",
+            {
+                id:checkedValues
+            },function(data){
+                console.log(data);
+                if(data == 1){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'All Good!',
+                        text: 'Organizational Officers deleted successfully'
+                    });
+                    get_datatable();
+                }else{
+                    Swal.fire({
+                        icon: 'danger',
+                        title: 'Opps!',
+                        text: 'Failed Query'
+                    });
+                }   
+            });  
+        }
+    });
+}
+
+$("#form_submit_add_form").submit(function(e){
+    e.preventDefault();
+    $("#form_btn_add_form").prop('disabled', true);
+    $.ajax({
+        type:"POST",
+        url:"ajax/add_organizational_officers.php",
+        data:$("#form_submit_add_form").serialize(),
+        success:function(data){
+            if(data==1){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'All Good!',
+                    text: 'Sanction Added Successfully',
+                });
+            	$('#form_submit_add_form')[0].reset();
+            	get_datatable();
+            }else{
+            	Swal.fire({
+                    icon: 'warning',
+                    title: 'Opps!',
+                    text: 'Failed Query!',
+                });
+           }
+           $("#modalAdd").modal("hide");
+           $("#form_btn_add_form").prop('disabled', false);
+        }
+      });
+});
+
+function get_datatable(){
+    $("#datatable").DataTable().destroy();
+    $("#datatable").DataTable({
+        "responsive": true,
+        "processing": true,
+        "ajax":{
+            "type":"POST",
+            "url":"ajax/datatables/organizational_officers.php",
+            "dataSrc":"data", 
+        },
+        "columns":[
+        {
+            "mRender": function(data,type,row){
+                return "<input type='checkbox' class='check' name='check' value='"+row.of_id+"'>";                
+            }
+        },
+        {
+            "mRender":function(data, type, row){
+                return "<button class='btn btn-success' style='padding: 5px 5px 5px 8px;' data-toggle='tooltip' title='Update Record' onclick='show_details_modal("+row.of_id+")'><i class='bi bi-pencil-square'></i></button>";
+            }
+        },
+        {
+            "data":"student"
+        },
+        {
+            "data":"of_type"
+        },
+        {
+            "data":"date_added"
+        }
+        ]
+    });
+}
 </script>
