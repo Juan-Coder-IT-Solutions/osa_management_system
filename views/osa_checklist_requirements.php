@@ -1,11 +1,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Sanctions</h1>
+      <h1>Checklist Requirements</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Sanctions</li>
+          <li class="breadcrumb-item active">Checklist Requirements</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -16,7 +16,7 @@
             <div class="card-body">
             	<div class="col-sm-12" style="padding: 10px;">
             		<div class="btn-group" role="group" aria-label="Basic mixed styles example" style="float: right;">
-	                	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddSanction">Add</button>
+	                	<button type="button" class="btn btn-primary" onclick="add()">Add</button>
 	                	<button type="button" class="btn btn-danger" onclick="delete_entry()">Delete</button>
 	              	</div>
             	</div> <br><br><br>
@@ -25,11 +25,10 @@
               	<table class="table table-striped datatable" id="datatable">
                 <thead>
 	                <tr>
-	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check_user')"></th>
+	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check_checklist_requirements')"></th>
 	                	<th scope="col"></th>
-	                    <th scope="col">Sanction Name</th>
-	                    <th scope="col">Sanction Desc</th>
-                        <th scope="col">Date Added</th>
+	                    <th scope="col">CR Desc</th>
+	                    <th scope="col">Date Added</th>
 	                </tr>
 	            </thead>
                 <tbody>
@@ -42,13 +41,17 @@
     </section>
 </main><!-- End #main -->
 
-<?php require_once 'views/modals/add_sanction.php'; ?>
-<?php require_once 'views/modals/update_sanction.php'; ?>
+<?php require_once 'views/modals/add_checklist_requirements.php'; ?>
+<?php require_once 'views/modals/update_checklist_requirements.php'; ?>
 
 <script type="text/javascript">
-$(document).ready(function() { 
-	get_datatable();
+$(document).ready(function(){
+  get_datatable();
 });
+
+function add(){
+    $("#modalAdd").modal('show');
+}
 
 $("#form_submit_update_form").submit(function(e){
     e.preventDefault();
@@ -64,7 +67,7 @@ $("#form_submit_update_form").submit(function(e){
         if(result.isConfirmed){
             $.ajax({
                 type:"POST",
-                url:"ajax/update_sanction.php",
+                url:"ajax/update_checklist_requirements.php",
                 data:$("#form_submit_update_form").serialize(),
                 success:function(data){
                     console.log(data);
@@ -72,7 +75,7 @@ $("#form_submit_update_form").submit(function(e){
                         Swal.fire({
                             icon: 'success',
                             title: 'All Good!',
-                            text: 'Sanction Updated Successfully',
+                            text: 'Checklist Requirements Updated Successfully',
                         });
                         get_datatable();
                     }else{
@@ -86,26 +89,24 @@ $("#form_submit_update_form").submit(function(e){
                 }
             });  
         }
-        $("#modalUpdateSanction").modal("hide");
+        $("#modalUpdate").modal("hide");
     });
 });
 
 function show_details_modal(primary_id){
-    $("#modalUpdateSanction").modal('show');
-    $.post("ajax/get_sanction.php",
+    $("#modalUpdate").modal('show');
+    $.post("ajax/get_checklist_requirements.php",
         {
-            sanction_id:primary_id
+            cr_id:primary_id
         },function(data){
            	var get_data = JSON.parse(data);
-            $("#update_sanction_id").val(get_data[0].sanction_id);
-            $("#update_sanction_name").val(get_data[0].sanction_name);
-            $("#update_sanction_desc").val(get_data[0].sanction_desc);
+            $("#update_cr_id").val(get_data[0].cr_id);
+            $("#update_cr_desc").val(get_data[0].cr_desc);
     });
 }
 
-
 function delete_entry(){
-    var checkedValues = $('.delete_check_box:checkbox:checked').map(function() {
+    var checkedValues = $('.check_checklist_requirements:checkbox:checked').map(function() {
         return this.value;
     }).get();
     id = [];
@@ -118,7 +119,7 @@ function delete_entry(){
         confirmButtonText: 'Proceed'
     }).then((result) => {
         if(result.isConfirmed){
-            $.post("ajax/delete_sanction.php",
+            $.post("ajax/delete_checklist_requirements.php",
             {
                 id:checkedValues
             },function(data){
@@ -127,7 +128,7 @@ function delete_entry(){
                     Swal.fire({
                         icon: 'success',
                         title: 'All Good!',
-                        text: 'Sanction deleted uccessfully'
+                        text: 'Checklist Requirements deleted successfully'
                     });
                     get_datatable();
                 }else{
@@ -143,65 +144,63 @@ function delete_entry(){
 }
 
 $("#form_submit_add_form").submit(function(e){
-    e.preventDefault();
-    $("#form_btn_add_form").prop('disabled', true);
-    $.ajax({
-        type:"POST",
-        url:"ajax/add_sanction.php",
-        data:$("#form_submit_add_form").serialize(),
-        success:function(data){
-            if(data==1){
-                Swal.fire({
-                    icon: 'success',
-                    title: 'All Good!',
-                    text: 'Sanction Added Successfully',
-                });
-            	$('#form_submit_add_form')[0].reset();
-            	get_datatable();
-            }else{
-            	Swal.fire({
-                    icon: 'warning',
-                    title: 'Opps!',
-                    text: 'Failed Query!',
-                });
-           }
-           $("#modalAddSanction").modal("hide");
-           $("#form_btn_add_form").prop('disabled', false);
-        }
-      });
+  e.preventDefault();
+  $("#form_btn_add_form").prop('disabled', true);
+  $.ajax({
+      type:"POST",
+      url:"ajax/add_check_requirements.php",
+      data:$("#form_submit_add_form").serialize(),
+      success:function(data){
+          if(data==1){
+              Swal.fire({
+                  icon: 'success',
+                  title: 'All Good!',
+                  text: 'Sanction Added Successfully',
+              });
+            $('#form_submit_add_form')[0].reset();
+            get_datatable();
+          }else{
+            Swal.fire({
+                  icon: 'warning',
+                  title: 'Opps!',
+                  text: 'Failed Query!',
+              });
+          }
+          $("#modalAdd").modal("hide");
+          $("#form_btn_add_form").prop('disabled', false);
+      }
+    });
 });
 
+
 function get_datatable(){
-    $("#datatable").DataTable().destroy();
-    $("#datatable").DataTable({
-        "responsive": true,
-        "processing": true,
-        "ajax":{
-            "type":"POST",
-            "url":"ajax/datatables/sanctions.php",
-            "dataSrc":"data", 
-        },
-        "columns":[
-        {
-            "mRender": function(data,type,row){
-                return "<input type='checkbox' class='delete_check_box' name='check_user' value='"+row.sanction_id+"'>";                
-            }
-        },
-        {
-            "mRender":function(data, type, row){
-                return "<button class='btn btn-success' style='padding: 5px 5px 5px 8px;' data-toggle='tooltip' title='Update Record' onclick='show_details_modal("+row.sanction_id+")'><i class='bi bi-pencil-square'></i></button>";
-            }
-        },
-        {
-            "data":"sanction_name"
-        },
-        {
-            "data":"sanction_desc"
-        },
-        {
-            "data":"date_added"
-        }
-        ]
-    });
+ 	$("#datatable").DataTable().destroy();
+	$("#datatable").DataTable({
+	    "responsive": true,
+	    "processing": true,
+	    "ajax":{
+	        "type":"POST",
+	        "url":"ajax/datatables/checklist_requirements.php",
+	        "dataSrc":"data", 
+	    },
+	    "columns":[
+	    {
+	        "mRender": function(data,type,row){
+	            return "<input type='checkbox' class='check_checklist_requirements' name='check_checklist_requirements' value='"+row.cr_id+"'>";                
+	        }
+	    },
+	    {
+	        "mRender":function(data, type, row){
+	            return "<button class='btn btn-success' style='padding: 5px 5px 5px 8px;' data-toggle='tooltip' title='Update Record' onclick='show_details_modal("+row.cr_id+")'><i class='bi bi-pencil-square'></i></button>";
+	        }
+	    },
+	    {
+	        "data":"cr_desc"
+	    },
+	    {
+	        "data":"date_added"
+	    }
+	    ]
+	});
 }
 </script>

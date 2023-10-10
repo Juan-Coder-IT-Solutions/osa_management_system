@@ -210,18 +210,18 @@ function get_datatable(){
 	    {
 	        "data":"name"
 	    },
-      {
-          "data":"student_code"
-      },
+        {
+            "data":"student_code"
+        },
 	    {
 	        "data":"student_gender"
 	    },
-      {
-          "data":"course"
-      },
-      {
-          "data":"student_contact_num"
-      },
+        {
+            "data":"course"
+        },
+        {
+            "data":"student_contact_num"
+        },
 	    {
 	        "data":"date_added"
 	    }
