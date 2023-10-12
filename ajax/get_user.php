@@ -11,6 +11,13 @@
 		$list['user_fname'] = $row['user_fname'];
 		$list['user_mname'] = $row['user_mname'];
 		$list['user_lname'] = $row['user_lname'];
+		$list['category'] = $row['category'];
+		$list['user_birthdate'] = $row['user_birthdate'];
+		$list['user_gender'] = $row['user_gender'];
+		$list['user_address'] = $row['user_address'];
+		$list['user_contact_num'] = $row['user_contact_num'];
+		$list['course'] = $row['course_id'];
+
 		$list['username'] = $row['username'];
 		$list['date_added'] = $row['date_added'];
 		

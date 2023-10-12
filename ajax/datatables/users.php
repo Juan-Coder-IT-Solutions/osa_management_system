@@ -10,6 +10,7 @@
 
 		$list['user_id'] 	= $row['user_id'];
 		$list['name'] 		= userFullName($row['user_id']);
+		$list['category'] 	= $row['category'];
 		$list['username'] 	= $row['username'];
 		$list['date_added'] = date("F j, Y h:i A",strtotime($row['date_added']));
 

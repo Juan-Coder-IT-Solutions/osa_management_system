@@ -35,6 +35,8 @@
   <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
+  <link href="../assets/vendor/sweet-alert/sweetalert2.min.css" rel="stylesheet">
+
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
 
@@ -111,6 +113,8 @@
   <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="../assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="../assets/vendor/php-email-form/validate.js"></script>
+  
+  <script src="../assets/vendor/sweet-alert/sweetalert2.all.min.js"></script>
 
   <!-- Template Main JS File -->
  <!--  <script src="../assets/js/main.js"></script> -->
@@ -126,8 +130,16 @@
             url:"../ajax/login.php",
             data:$("#form_submit").serialize(),
             success:function(data){
+              if(data == 1){
                 window.location.href = "../index.php?page=dashboard";
-                $("#btn_submit").prop('disabled', false);
+              }else{
+                Swal.fire({
+                      icon: 'danger',
+                      title: 'Opps!',
+                      text: 'Incorrect username or password',
+                  });
+              }
+              $("#btn_submit").prop('disabled', false);
             }
           });
     });

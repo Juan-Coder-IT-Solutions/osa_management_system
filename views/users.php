@@ -28,6 +28,7 @@
 	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check_user')"></th>
 	                	<th scope="col"></th>
 	                    <th scope="col">Name</th>
+                        <th scope="col">Category</th>
 	                    <th scope="col">Username</th>
 	                    <th scope="col">Date Added</th>
 	                </tr>
@@ -100,11 +101,17 @@ function show_details_modal(primary_id){
         {
             user_id:primary_id
         },function(data){
-           	var get_data = JSON.parse(data);
+           	var get_data = JSON.parse(data); 
             $("#update_user_id").val(get_data[0].user_id);
             $("#update_user_fname").val(get_data[0].user_fname);
             $("#update_user_mname").val(get_data[0].user_mname);
             $("#update_user_lname").val(get_data[0].user_lname);
+            $("#update_category").val(get_data[0].category);
+            $("#update_gender").val(get_data[0].user_gender);
+            $("#update_birthdate").val(get_data[0].user_birthdate);
+            $("#update_contact_number").val(get_data[0].user_contact_num);
+            $("#update_address").val(get_data[0].user_address);
+            $("#update_course_id").val(get_data[0].course);
             $("#update_username").val(get_data[0].username);
             $("#update_password").val(get_data[0].password);
     });
@@ -207,6 +214,11 @@ function get_datatable(){
 	    },
 	    {
 	        "data":"name"
+	    },
+        {
+	        "mRender": function(data,type,row){
+	            return row.category=="A"?"Admin":"Student";                
+	        }
 	    },
 	    {
 	        "data":"username"
