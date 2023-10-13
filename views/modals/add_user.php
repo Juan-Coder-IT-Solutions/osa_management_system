@@ -65,8 +65,16 @@
 
 						<div class="row" style="margin-bottom:10px">
 							<div class="col-6">
+								<label for="category" class="form-label">Category</label>
+								<select id="category" name="category" class="form-select" onchange="courses()">
+									<option value="A">Admin</option>
+									<option value="S">Student</option>
+								</select>
+							</div>
+
+							<div class="col-6" style="display:none;" id="course_stat">
 								<label for="course_id" class="form-label">Course</label>
-								<select  id="course_id" name="course_id" class="form-select">
+								<select id="course_id" name="course_id" class="form-select">
 									<?php 
 										$fetch_course = $mysqli->query("SELECT * FROM tbl_courses ORDER BY course_name ASC") or die(mysqli_error());
 										while ($course_row = $fetch_course->fetch_array()) {
@@ -75,29 +83,21 @@
 									?>
 								</select>
 							</div>
-						
-							<div class="col-6">
-								<label for="category" class="form-label">Category</label>
-								<select id="category" name="category" class="form-select">
-									<option value="A">Admin</option>
-									<option value="S">Student</option>
-								</select>
-							</div>
 						</div>
-
 
 						<div class="row">
 							<div class="col-6">
 								<label class="form-label">Username</label>
 								<div class="input-group has-validation">
-									<input type="text" name="username" class="form-control" required>
+									<input type="text" name="username" class="form-control">
 								</div>
 							</div>
-
+							
 							<div class="col-6">
-								<label class="form-label">Password</label>
-								<div class="input-group has-validation">
-									<input type="password" name="password" class="form-control" required>
+								<label	label class="form-label">Password</label>
+								<div class="input-group">
+									<input type="password" id="password" name="password" class="form-control">
+									<span class="input-group-text" onclick="show_pass()" style="cursor:pointer"><span id="icon"></span></span>
 								</div>
 							</div>
 						</div>
@@ -112,3 +112,4 @@
 		</div>
 	</div>
 </div>
+
