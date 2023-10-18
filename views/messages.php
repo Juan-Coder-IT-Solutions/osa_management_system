@@ -280,89 +280,24 @@ body{
                     </div>
                 </div>
                 <ul class="list-unstyled chat-list mt-2 mb-0">
-                    <li class="clearfix active">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
-                        <div class="about">
-                            <div class="name">Aiden Chavez</div>
-                            <div class="status"> <i class="fa fa-circle online"></i> online </div>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-                        <div class="about">
-                            <div class="name">Mike Thomas</div>
-                            <div class="status"> <i class="fa fa-circle online"></i> online </div>
-                        </div>
-                    </li>                                    
-                    <li class="clearfix">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
-                        <div class="about">
-                            <div class="name">Christian Kelly</div>
-                            <div class="status"> <i class="fa fa-circle offline"></i> left 10 hours ago </div>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="avatar">
-                        <div class="about">
-                            <div class="name">Monica Ward</div>
-                            <div class="status"> <i class="fa fa-circle online"></i> online </div>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-                        <div class="about">
-                            <div class="name">Dean Henry</div>
-                            <div class="status"> <i class="fa fa-circle offline"></i> offline since Oct 28 </div>
-                        </div>
-                    </li>
-
-
+                    <?php 
+                        $session_user_id = $_SESSION['user_id'];
+                        $user_category = user_info("category",$session_user_id);
+                        $user_list_param = $user_category=="A"?"category='S'":"category='A'";
+                        $fetch_user_list = $mysqli->query("SELECT * FROM tbl_users WHERE $user_list_param ORDER BY user_fname ASC") or die(mysqli_error());
+                        while ($user_list_row = $fetch_user_list->fetch_array()) {
+                            echo "<li class='clearfix user_message<?=$user_list_row[user_id]?>' onclick='open_user_messages($user_list_row[user_id])'>
+                                    <img src='https://bootdey.com/img/Content/avatar/avatar2.png' alt='avatar'>
+                                    <div class='about'>
+                                        <div class='name'>".$user_list_row['user_fname']." ".$user_list_row['user_lname']."</div>
+                                        <div class='status'> <i class='fa fa-circle online'></i> online </div>
+                                    </div>
+                                </li>";
+                        }
+                    ?>
                 </ul>
             </div>
-            <div class="chat">
-                <div class="chat-header clearfix">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
-                            </a>
-                            <div class="chat-about">
-                            <h6 class="m-b-0 chat-heads-name">Aiden Chavez</h6>
-                                <small>Last seen: 2 hours ago</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="chat-history">
-                    <ul class="m-b-0">
-                        <li class="clearfix">
-                            <div class="message-data text-right">
-                                <span class="message-data-time">10:10 AM, Today</span>
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
-                            </div>
-                            <div class="message other-message float-right"> Hi Aiden, how are you? How is the project coming along? </div>
-                        </li>
-                        <li class="clearfix">
-                            <div class="message-data">
-                                <span class="message-data-time">10:12 AM, Today</span>
-                            </div>
-                            <div class="message my-message">Are we meeting today?</div>                                    
-                        </li>                               
-                        <li class="clearfix">
-                            <div class="message-data">
-                                <span class="message-data-time">10:15 AM, Today</span>
-                            </div>
-                            <div class="message my-message">Project has been already finished and I have results to show you.</div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="chat-message clearfix">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Type your message">
-                        <button class="btn btn-primary">Send</button>
-                    </div>
-                </div>
-            </div>
+            <div class="chat"> </div>
         </div>
     </div>
 
@@ -370,6 +305,13 @@ body{
 
 <script type="text/javascript">
 $(document).ready(function() {
+    open_user_messages("");
 });
-
+function open_user_messages(user_id){
+    $.post("ajax/message_box.php",{
+        user_id:user_id
+    },function(data){
+        $(".chat").html(data);
+    });
+}
 </script>
