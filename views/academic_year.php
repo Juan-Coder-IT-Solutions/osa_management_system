@@ -52,21 +52,44 @@ $(document).ready(function() {
 $("#form_submit_update_form").submit(function(e){
     e.preventDefault();
     $("#form_btn_update_form").prop('disabled', true);
-    $.ajax({
-        type:"POST",
-        url:"ajax/update_academic_year.php",
-        data:$("#form_submit_update_form").serialize(),
-        success:function(data){
-            if(data==1){
-            	alert("Success Update!");
-            	get_datatable();
-            	$("#modalUpdate").modal("hide");
-            }else{
-            	alert("Failed Query!");
-           }
-           $("#form_btn_update_form").prop('disabled', false);
+
+    Swal.fire({
+        title: 'Update',
+        text: "Are you sure you want to proceed?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Proceed'
+    }).then((result) => {
+        if(result.isConfirmed){
+            $.ajax({
+                type:"POST",
+                url:"ajax/update_academic_year.php",
+                data:$("#form_submit_update_form").serialize(),
+                success:function(data){
+                    if(data==1){
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'All Good!',
+                            text: 'Academic Year updated successfully'
+                        });
+                        get_datatable();
+                        $("#modalUpdate").modal("hide");
+                    }else{
+                        Swal.fire({
+                            icon: 'danger',
+                            title: 'Opps!',
+                            text: 'Failed Query'
+                        });
+                }
+                $("#form_btn_update_form").prop('disabled', false);
+                }
+            });
         }
-      });
+    });
+
+
+    
 });
 
 function show_details_modal(primary_id){

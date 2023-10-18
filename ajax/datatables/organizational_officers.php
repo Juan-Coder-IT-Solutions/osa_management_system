@@ -8,7 +8,7 @@
 		$list = array();
 
 		$list['of_id'] 	        = $row['of_id'];
-		$list['student']        = $row['student_id'];
+		$list['student']        = studentFullName($row['student_id']);
         $list['of_type']        = $row['of_type'];
 		$list['date_added']     = date("F j, Y h:i A",strtotime($row['date_added']));
 
