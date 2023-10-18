@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `tbl_activities` (
 /*!40000 ALTER TABLE `tbl_activities` DISABLE KEYS */;
 INSERT INTO `tbl_activities` (`activity_id`, `ay_id`, `activity_desc`, `activity_date`, `date_added`) VALUES
 	(2, 1, 'qweqwe', '2023-09-20', '2023-09-20 16:04:07'),
-	(3, 1, 'dssd 1232132', '2023-09-22', '2023-09-20 16:04:16'),
+	(3, 2, 'test', '2023-09-22', '2023-09-20 16:04:16'),
 	(4, 2, 'retydfg', '2023-09-20', '2023-09-20 16:04:24');
 /*!40000 ALTER TABLE `tbl_activities` ENABLE KEYS */;
 
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `tbl_checklist_requirements` (
   `cr_desc` varchar(150) NOT NULL DEFAULT '',
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`cr_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table osa_db.tbl_checklist_requirements: ~0 rows (approximately)
 /*!40000 ALTER TABLE `tbl_checklist_requirements` DISABLE KEYS */;
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `tbl_courses` (
 INSERT INTO `tbl_courses` (`course_id`, `course_name`, `course_code`, `course_grade`, `date_added`) VALUES
 	(5, 'IT', 'IT-123123', 100, '2023-05-30 16:34:37'),
 	(6, 'HM', 'HM-123123', 100, '2023-05-30 16:34:40'),
-	(7, 'aweawe', 'wer', 12, '2023-09-22 09:34:42');
+	(7, 'test', 'test', 12, '2023-09-22 09:34:42');
 /*!40000 ALTER TABLE `tbl_courses` ENABLE KEYS */;
 
 -- Dumping structure for table osa_db.tbl_exemplary_students
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `tbl_exemplary_students` (
 -- Dumping data for table osa_db.tbl_exemplary_students: ~0 rows (approximately)
 /*!40000 ALTER TABLE `tbl_exemplary_students` DISABLE KEYS */;
 INSERT INTO `tbl_exemplary_students` (`es_id`, `student_id`, `es_desc`, `date_added`) VALUES
-	(2, 3, 'qweqwe qweqwe', '2023-09-20 15:20:51');
+	(2, 8, 'test', '2023-09-20 15:20:51');
 /*!40000 ALTER TABLE `tbl_exemplary_students` ENABLE KEYS */;
 
 -- Dumping structure for table osa_db.tbl_good_moral
@@ -104,10 +104,47 @@ CREATE TABLE IF NOT EXISTS `tbl_good_moral` (
 /*!40000 ALTER TABLE `tbl_good_moral` DISABLE KEYS */;
 INSERT INTO `tbl_good_moral` (`good_moral_id`, `ay_id`, `student_id`, `good_modal_desc`, `date_added`) VALUES
 	(1, 2, 11, 'wewewee23', '2023-09-20 16:26:52'),
-	(3, 1, 8, '123123123123', '2023-09-20 16:28:14'),
+	(3, 2, 9, 'test', '2023-09-20 16:28:14'),
 	(4, 1, 8, 'wewe', '2023-09-20 16:28:39'),
 	(5, 1, 3, 'yuyu', '2023-09-20 16:32:04');
 /*!40000 ALTER TABLE `tbl_good_moral` ENABLE KEYS */;
+
+-- Dumping structure for table osa_db.tbl_messages
+CREATE TABLE IF NOT EXISTS `tbl_messages` (
+  `msg_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `sender_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` varchar(1) NOT NULL DEFAULT '' COMMENT 'R = READ, U = UNREAD',
+  PRIMARY KEY (`msg_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table osa_db.tbl_messages: ~6 rows (approximately)
+/*!40000 ALTER TABLE `tbl_messages` DISABLE KEYS */;
+INSERT INTO `tbl_messages` (`msg_id`, `sender_id`, `receiver_id`, `message`, `date_added`, `status`) VALUES
+	(1, 8, 15, 'test', '2023-10-18 10:15:25', ''),
+	(2, 8, 15, 'test', '2023-10-18 10:15:27', ''),
+	(3, 8, 15, 'hi', '2023-10-18 10:16:16', ''),
+	(4, 8, 15, 'qwerty', '2023-10-18 10:16:48', ''),
+	(5, 15, 8, 'hi', '2023-10-18 10:16:56', ''),
+	(37, 8, 15, 'test', '2023-10-18 11:22:54', ''),
+	(38, 8, 15, 'tstaset', '2023-10-18 11:22:56', ''),
+	(39, 8, 15, 'awetawet', '2023-10-18 11:22:57', ''),
+	(40, 8, 15, 'awerawer', '2023-10-18 11:23:06', ''),
+	(41, 8, 15, 'dsgsdfg', '2023-10-18 11:23:07', ''),
+	(42, 8, 15, 'sdfgsdfg', '2023-10-18 11:23:08', ''),
+	(43, 8, 15, 'sdfgsdfg', '2023-10-18 11:23:10', ''),
+	(44, 8, 15, 'sdfgsdfg', '2023-10-18 11:23:11', ''),
+	(45, 8, 15, 'dsfgsdfg', '2023-10-18 11:23:12', ''),
+	(46, 8, 15, 'df', '2023-10-18 11:34:11', ''),
+	(47, 8, 15, 'awer', '2023-10-18 11:34:13', ''),
+	(48, 8, 15, 'vb', '2023-10-18 11:34:15', ''),
+	(49, 8, 15, 'afs', '2023-10-18 11:38:33', ''),
+	(50, 8, 15, 'dsf', '2023-10-18 11:43:10', ''),
+	(51, 8, 15, 'adf', '2023-10-18 11:52:32', ''),
+	(52, 8, 15, 'test', '2023-10-18 13:19:18', '');
+/*!40000 ALTER TABLE `tbl_messages` ENABLE KEYS */;
 
 -- Dumping structure for table osa_db.tbl_offenses
 CREATE TABLE IF NOT EXISTS `tbl_offenses` (
@@ -129,15 +166,17 @@ CREATE TABLE IF NOT EXISTS `tbl_offenses` (
 CREATE TABLE IF NOT EXISTS `tbl_organizational_officers` (
   `of_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
+  `ay_id` int(11) NOT NULL,
   `of_type` varchar(25) NOT NULL DEFAULT '',
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`of_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table osa_db.tbl_organizational_officers: ~0 rows (approximately)
+-- Dumping data for table osa_db.tbl_organizational_officers: ~1 rows (approximately)
 /*!40000 ALTER TABLE `tbl_organizational_officers` DISABLE KEYS */;
-INSERT INTO `tbl_organizational_officers` (`of_id`, `student_id`, `of_type`, `date_added`) VALUES
-	(2, 11, 'test', '2023-09-23 11:39:02');
+INSERT INTO `tbl_organizational_officers` (`of_id`, `student_id`, `ay_id`, `of_type`, `date_added`) VALUES
+	(2, 9, 1, 'testtsetset', '2023-09-23 11:39:02'),
+	(3, 9, 2, 'test', '2023-10-18 10:27:04');
 /*!40000 ALTER TABLE `tbl_organizational_officers` ENABLE KEYS */;
 
 -- Dumping structure for table osa_db.tbl_sanctions
@@ -212,13 +251,14 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `profile_img` text NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
--- Dumping data for table osa_db.tbl_users: ~3 rows (approximately)
+-- Dumping data for table osa_db.tbl_users: ~4 rows (approximately)
 /*!40000 ALTER TABLE `tbl_users` DISABLE KEYS */;
 INSERT INTO `tbl_users` (`user_id`, `user_code`, `category`, `user_fname`, `user_mname`, `user_lname`, `user_birthdate`, `user_gender`, `user_address`, `user_contact_num`, `course_id`, `username`, `password`, `date_added`, `profile_img`) VALUES
 	(8, '0', 'A', 'Juan', 'Quezon', 'Dela Cruz', '0000-00-00', '', '', '', 0, 'admin', '827ccb0eea8a706c4c34a16891f84e7b', '2023-05-30 11:48:05', '116576-PROF-8.PNG'),
-	(14, '000000014', 'A', 'aaa', 'aaa', 'aaa', '2023-11-30', 'F', 'aaa', '1234678', 6, 'aa', '4124bc0a9335c27f086f24ba207a4912', '2023-10-12 14:25:48', '');
+	(14, '000000014', 'A', 'aaa', 'aaa', 'aaa', '2023-11-30', 'F', 'aaa', '1234678', 6, 'aa', '4124bc0a9335c27f086f24ba207a4912', '2023-10-12 14:25:48', ''),
+	(15, '000000015', 'S', 'reenu', 'b', 'darker', '2023-10-18', 'M', 'test', '13245678', 5, 'rino', '827ccb0eea8a706c4c34a16891f84e7b', '2023-10-18 10:15:18', '');
 /*!40000 ALTER TABLE `tbl_users` ENABLE KEYS */;
 
 -- Dumping structure for table osa_db.tbl_users_2
@@ -251,10 +291,12 @@ CREATE TABLE IF NOT EXISTS `tbl_violations` (
   `violation_remarks` text NOT NULL,
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`violation_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table osa_db.tbl_violations: ~0 rows (approximately)
+-- Dumping data for table osa_db.tbl_violations: ~1 rows (approximately)
 /*!40000 ALTER TABLE `tbl_violations` DISABLE KEYS */;
+INSERT INTO `tbl_violations` (`violation_id`, `violation_name`, `violation_desc`, `violation_remarks`, `date_added`) VALUES
+	(1, 'test', '', 'test', '2023-10-18 08:52:33');
 /*!40000 ALTER TABLE `tbl_violations` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
