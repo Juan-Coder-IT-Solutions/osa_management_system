@@ -8,10 +8,15 @@ include '../core/config.php';
 
 		while ($row = $fetch->fetch_array()) {
 			$message_placement = $row['sender_id']==$session_user_id?"message other-message float-right":"message my-message";
-					echo "<ul class='m-b-5 clearfix'><li class='clearfix $message_placement'>
-			        <div> $row[message] </div>
-			    </li>
-		    </ul>";
+					echo "<ul class='m-b-5 clearfix'>
+					
+					<li class='clearfix $message_placement'>
+						<div style='font-size: 12px;'> $row[date_added]</div>
+						<br>
+						<div> $row[message]
+						</div>
+					</li>
+		    	</ul>";
 		}
 	}else{
 		echo "<center><h5>No message found ..</h5></center>";

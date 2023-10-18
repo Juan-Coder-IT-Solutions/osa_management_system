@@ -7,7 +7,20 @@
 			</div>
 			<form role="form" method="POST" id="form_submit_add_form">
 				<div class="modal-body">
-                    <div class="col-12">
+				
+					<div class="col-12" style="margin-bottom:10px">
+						<label class="form-label">Academic Year</label>
+							<select name="ay_id" class="form-select">
+							<?php 
+								$fetch_ay = $mysqli->query("SELECT * FROM tbl_academic_year ORDER BY ay_name ASC") or die(mysqli_error());
+								while ($ay_row = $fetch_ay->fetch_array()) {
+									echo "<option value='$ay_row[ay_id]'>$ay_row[ay_name]</option>";
+								}
+							?>
+						</select>
+					</div>
+
+                    <div class="col-12" style="margin-bottom:10px">
                        	<label class="form-label">Student</label>
 		                  <select name="student_id" class="form-select">
 		                    <?php 

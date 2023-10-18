@@ -6,6 +6,10 @@ body{
     background-color: #f4f7f6;
     margin-top:20px;
 }
+.chat-history {
+    height: 300px;
+    overflow-y: auto;
+}
 .card {
     background: #fff;
     transition: .5s;
@@ -93,6 +97,7 @@ body{
 }
 
 .chat .chat-history {
+    overflow-y: auto;
     padding: 20px;
     border-bottom: 2px solid #fff
 }
@@ -312,6 +317,11 @@ function open_user_messages(user_id){
         user_id:user_id
     },function(data){
         $(".chat").html(data);
+        $("#new_message").focus();
+        
     });
 }
+
+
+
 </script>

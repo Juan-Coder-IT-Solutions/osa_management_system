@@ -42,10 +42,11 @@ function send_message(){
     },function(data){
         if(data==1){
             chat_history();
-            $("#new_message").val("");
+            $("#new_message").val("").focus();
         }else{
             alert("Message unable to send!");
         }
+        $(".chat").animate({ scrollTop: $('.chat').prop("scrollHeight")},1000);
     });
 }
 
@@ -55,6 +56,7 @@ function chat_history(){
         receiver_id:receiver_id
     },function(data){
         $(".chat-history").html(data);
+        $(".chat-history").animate({ scrollTop: $('.chat-history').prop("scrollHeight")},1000);
     });
 }
 </script>
