@@ -295,7 +295,6 @@ body{
                                     <img src='https://bootdey.com/img/Content/avatar/avatar2.png' alt='avatar'>
                                     <div class='about'>
                                         <div class='name'>".$user_list_row['user_fname']." ".$user_list_row['user_lname']."</div>
-                                        <div class='status'> <i class='fa fa-circle online'></i> online </div>
                                     </div>
                                 </li>";
                         }

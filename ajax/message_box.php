@@ -13,7 +13,6 @@
                 </a>
                 <div class="chat-about">
                 <h6 class="m-b-0 chat-heads-name"><?= $row['user_fname']." ".$row['user_lname']?></h6>
-                    <small>Online</small>
                 </div>
             </div>
         </div>
