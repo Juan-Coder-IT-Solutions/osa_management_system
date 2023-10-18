@@ -67,7 +67,7 @@
 
 					<div class="row" style="margin-bottom:10px">
 						<div class="col-6">
-							<label for="course_id" class="form-label">Course</label>
+							<label for="update_course_id" class="form-label">Course</label>
 							<select  id="update_course_id" name="update_course_id" class="form-select">
 								<?php 
 									$fetch_course = $mysqli->query("SELECT * FROM tbl_courses ORDER BY course_name ASC") or die(mysqli_error());
@@ -98,7 +98,7 @@
 						<div class="col-6">
 						<label class="form-label">Password</label>
 						<div class="input-group has-validation">
-							<input type="text" id="update_password" name="update_password" class="form-control" required>
+							<input type="password" id="update_password" name="update_password" class="form-control" required>
 						</div>
 						</div>
 					</div>

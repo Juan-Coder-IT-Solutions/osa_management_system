@@ -19,7 +19,20 @@
 	                	<button type="button" class="btn btn-primary" onclick="add_entry()">Add</button>
 	                	<button type="button" class="btn btn-danger" onclick="delete_entry()">Delete</button>
 	              	</div>
-            	</div> <br><br><br>
+            	</div> 
+                <div class="col-sm-4">
+            		<label class="form-label">Academic Year</label>
+	                  <select id="ay_id" class="form-select" onchange="get_datatable()">
+                        <option value="">-- Select Academic Year --</option>
+	                    <?php 
+	                    	$fetch_ay = $mysqli->query("SELECT * FROM tbl_academic_year ORDER BY ay_name ASC") or die(mysqli_error());
+							while ($ay_row = $fetch_ay->fetch_array()) {
+								echo "<option value='$ay_row[ay_id]'>$ay_row[ay_name]</option>";
+							}
+	                    ?>
+	                </select>
+            	</div>
+                <br><br><br>
 
               	<!-- Table with stripped rows -->
               	<table class="table table-striped datatable" id="datatable">
@@ -28,7 +41,8 @@
 	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check')"></th>
 	                	<th scope="col"></th>
 	                    <th scope="col">Student</th>
-                      <th scope="col">OF Type</th>
+                        <th scope="col">OF Type</th>
+                        <th scope="col">Academic Year</th>
 	                    <th scope="col">Date Added</th>
 	                </tr>
 	            </thead>
@@ -64,9 +78,48 @@ function show_details_modal(primary_id){
             $("#update_of_id").val(get_data[0].of_id);
             $("#update_student_id").val(get_data[0].student_id);
             $("#update_of_type").val(get_data[0].of_type);
+            $("#update_ay_id").val(get_data[0].ay_id);
     });
 }
 
+$("#form_submit_update_form").submit(function(e){
+    e.preventDefault();
+    $("#form_btn_update_form").prop('disabled', true);
+
+    Swal.fire({
+        title: 'Update',
+        text: "Are you sure you want to proceed?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Proceed'
+    }).then((result) => {
+        if(result.isConfirmed){
+            $.ajax({
+                type:"POST",
+                url:"ajax/update_organizational_officer.php",
+                data:$("#form_submit_update_form").serialize(),
+                success:function(data){
+                    if(data==1){
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'All Good!',
+                            text: 'Organizational Officers updated successfully'
+                        });
+                        get_datatable();
+                        $("#modalUpdate").modal("hide");
+                    }else{
+                        Swal.fire({
+                            icon: 'danger',
+                            title: 'Opps!',
+                            text: 'Failed Query'
+                        });
+                }
+                $("#form_btn_update_form").prop('disabled', false);
+                }
+            });
+        }
+    });
+});
 
 function delete_entry(){
     var checkedValues = $('.check:checkbox:checked').map(function() {
@@ -114,6 +167,7 @@ $("#form_submit_add_form").submit(function(e){
         url:"ajax/add_organizational_officers.php",
         data:$("#form_submit_add_form").serialize(),
         success:function(data){
+            alert(data);
             if(data==1){
                 Swal.fire({
                     icon: 'success',
@@ -136,6 +190,7 @@ $("#form_submit_add_form").submit(function(e){
 });
 
 function get_datatable(){
+    var ay_id = $("#ay_id").val()
     $("#datatable").DataTable().destroy();
     $("#datatable").DataTable({
         "responsive": true,
@@ -143,7 +198,10 @@ function get_datatable(){
         "ajax":{
             "type":"POST",
             "url":"ajax/datatables/organizational_officers.php",
-            "dataSrc":"data", 
+            "dataSrc":"data",
+            "data":{
+                ay_id:ay_id
+            } 
         },
         "columns":[
         {
@@ -161,6 +219,9 @@ function get_datatable(){
         },
         {
             "data":"of_type"
+        },
+        {
+            "data":"academic_year"
         },
         {
             "data":"date_added"

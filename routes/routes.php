@@ -31,6 +31,8 @@
 		require $view.'organizational_officers.php';
 	}else if($page == 'osa_checklist_requirements'){
 		require_once $view.'osa_checklist_requirements.php';
+	}else if($page == 'messages'){
+		require_once $view.'messages.php';
 	}else{
 		require $view.'404.php';
 	}

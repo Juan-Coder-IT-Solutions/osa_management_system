@@ -49,7 +49,30 @@
 <script type="text/javascript">
 $(document).ready(function() { 
 	get_datatable();
+    $("#icon").html("<span class='ri-eye-line'></span>");
 });
+
+function courses(status){
+    var status = $("#category").val();
+
+   if(status == 'A'){
+    $("#course_stat").hide();
+   }else{
+    $("#course_stat").show();
+   }
+}
+
+function show_pass(){
+    var x = document.getElementById("password");
+
+    if(x.type === "password"){
+        x.type = "text";
+        $("#icon").html("<span class='ri-eye-off-fill'></span>");
+    }else{
+        x.type = "password";
+        $("#icon").html("<span class='ri-eye-line'></span>");
+    }
+}
 
 $("#form_submit_update_form").submit(function(e){
     e.preventDefault();
@@ -90,8 +113,8 @@ $("#form_submit_update_form").submit(function(e){
                     }
                 }
             });
-            $("#form_btn_update_form").prop('disabled', false);
         }
+        $("#form_btn_update_form").prop('disabled', false);
     });
 });
 
