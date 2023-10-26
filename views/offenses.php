@@ -4,7 +4,7 @@
       <h1>Offenses</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">Pages</li>
+          <li class="breadcrumb-item">Sanctions & Violations</li>
           <li class="breadcrumb-item active">Offenses</li>
         </ol>
       </nav>
@@ -19,7 +19,21 @@
 	                	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAdd">Add</button>
 	                	<button type="button" class="btn btn-danger" onclick="delete_entry()">Delete</button>
 	              	</div>
-            	</div> <br><br><br>
+            	</div> 
+
+                <div class="col-sm-4">
+                    <label class="form-label">Academic Year</label>
+                      <select id="ay_id" class="form-select" onchange="get_datatable()">
+                        <option value=''>-- Select Academic Year--</option>
+                        <?php 
+                            $fetch_ay = $mysqli->query("SELECT * FROM tbl_academic_year ORDER BY ay_name ASC") or die(mysqli_error());
+                            while ($ay_row = $fetch_ay->fetch_array()) {
+                                echo "<option value='$ay_row[ay_id]'>$ay_row[ay_name]</option>";
+                            }
+                        ?>
+                    </select>
+                </div>
+                <br><br><br>
 
               	<!-- Table with stripped rows -->
               	<table class="table table-striped datatable" id="datatable">
@@ -176,6 +190,7 @@ $("#form_submit_add_form").submit(function(e){
 });
 
 function get_datatable(){
+    var ay_id = $("#ay_id").val();
  	$("#datatable").DataTable().destroy();
 	$("#datatable").DataTable({
 	    "responsive": true,
@@ -183,7 +198,10 @@ function get_datatable(){
 	    "ajax":{
 	        "type":"POST",
 	        "url":"ajax/datatables/offenses.php",
-	        "dataSrc":"data", 
+	        "dataSrc":"data",
+            "data": {
+                ay_id: ay_id
+            },
 	    },
 	    "columns":[
 	    {

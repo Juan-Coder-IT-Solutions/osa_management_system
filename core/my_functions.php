@@ -47,12 +47,28 @@ function sanctionName($sanction_id){
 	return $row["sanction_name"];
 }
 
+function organizationalOfficerName($of_id){
+	global $mysqli;
+	$fetch = $mysqli->query("SELECT * FROM tbl_organizational_officers WHERE of_id='$of_id'") or die(mysqli_error());
+	$row = $fetch->fetch_array();
+
+	return $row["of_type"];
+}
+
 function ayName($ay_id){
 	global $mysqli;
 	$fetch = $mysqli->query("SELECT * FROM tbl_academic_year WHERE ay_id='$ay_id'") or die(mysqli_error());
 	$row = $fetch->fetch_array();
 
 	return $row["ay_name"];
+}
+
+function clubName($club_id){
+	global $mysqli;
+	$fetch = $mysqli->query("SELECT * FROM tbl_clubs WHERE club_id='$club_id'") or die(mysqli_error());
+	$row = $fetch->fetch_array();
+
+	return $row["club_name"];
 }
 
 

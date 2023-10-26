@@ -10,7 +10,7 @@
 						<input type="hidden" id="update_ay_id" name="update_ay_id">
 
 	                    <div class="col-12">
-	                      <label class="form-label">Name</label>
+	                      <label class="form-label">Academic Year</label>
 	                      <div class="input-group has-validation">
 	                        <input type="text" id="update_ay_name" name="update_ay_name" class="form-control" required>
 	                      </div>

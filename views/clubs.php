@@ -1,11 +1,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Courses</h1>
+      <h1>Clubs</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">Master Data</li>
-          <li class="breadcrumb-item active">Courses</li>
+          <li class="breadcrumb-item">Organizations</li>
+          <li class="breadcrumb-item active">Clubs</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -16,7 +16,7 @@
             <div class="card-body">
             	<div class="col-sm-12" style="padding: 10px;">
             		<div class="btn-group" role="group" aria-label="Basic mixed styles example" style="float: right;">
-	                	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddCourse">Add</button>
+	                	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAdd">Add</button>
 	                	<button type="button" class="btn btn-danger" onclick="delete_entry()">Delete</button>
 	              	</div>
             	</div> <br><br><br>
@@ -27,9 +27,7 @@
 	                <tr>
 	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check_user')"></th>
 	                	<th scope="col"></th>
-	                    <th scope="col">Course Name</th>
-	                    <th scope="col">Course Code</th>
-	                    <th scope="col">Course Grade</th>
+	                    <th scope="col">Club Name</th>
                         <th scope="col">Date Added</th>
 	                </tr>
 	            </thead>
@@ -43,8 +41,8 @@
     </section>
 </main><!-- End #main -->
 
-<?php require_once 'views/modals/add_course.php'; ?>
-<?php require_once 'views/modals/update_course.php'; ?>
+<?php require_once 'views/modals/add_club.php'; ?>
+<?php require_once 'views/modals/update_club.php'; ?>
 
 <script type="text/javascript">
 $(document).ready(function() { 
@@ -65,14 +63,15 @@ $("#form_submit_update_form").submit(function(e){
         if(result.isConfirmed){
             $.ajax({
                 type:"POST",
-                url:"ajax/update_course.php",
+                url:"ajax/update_club.php",
                 data:$("#form_submit_update_form").serialize(),
                 success:function(data){
+                    console.log(data);
                     if(data==1){
                         Swal.fire({
                             icon: 'success',
                             title: 'All Good!',
-                            text: 'Course Updated Successfully',
+                            text: 'Club Updated Successfully',
                         });
                         get_datatable();
                     }else{
@@ -80,29 +79,28 @@ $("#form_submit_update_form").submit(function(e){
                             icon: 'danger',
                             title: 'Opps!',
                             text: 'Failed Query',
-                        })
+                        });
                 }
                 $("#form_btn_update_form").prop('disabled', false);
                 }
             });  
         }
-        $("#modalUpdateCourses").modal("hide");
+        $("#modalUpdate").modal("hide");
     });
 });
 
 function show_details_modal(primary_id){
-    $("#modalUpdateCourses").modal('show');
-    $.post("ajax/get_courses.php",
+    $("#modalUpdate").modal('show');
+    $.post("ajax/get_club.php",
         {
-            course_id:primary_id
+            primary_id:primary_id
         },function(data){
            	var get_data = JSON.parse(data);
-            $("#update_course_id").val(get_data[0].course_id);
-            $("#update_course_name").val(get_data[0].course_name);
-            $("#update_course_code").val(get_data[0].course_code);
-            $("#update_course_grade").val(get_data[0].course_grade);
+            $("#update_club_id").val(get_data[0].club_id);
+            $("#update_club_name").val(get_data[0].club_name);
     });
 }
+
 
 function delete_entry(){
     var checkedValues = $('.delete_check_box:checkbox:checked').map(function() {
@@ -118,22 +116,23 @@ function delete_entry(){
         confirmButtonText: 'Proceed'
     }).then((result) => {
         if(result.isConfirmed){
-            $.post("ajax/delete_course.php",
+            $.post("ajax/delete_club.php",
             {
                 id:checkedValues
             },function(data){
+                console.log(data);
                 if(data == 1){
                     Swal.fire({
                         icon: 'success',
                         title: 'All Good!',
-                        text: 'Course deleted successfully',
+                        text: 'Club deleted uccessfully'
                     });
                     get_datatable();
                 }else{
                     Swal.fire({
                         icon: 'danger',
                         title: 'Opps!',
-                        text: 'Failed Query',
+                        text: 'Failed Query'
                     });
                 }   
             });  
@@ -146,15 +145,15 @@ $("#form_submit_add_form").submit(function(e){
     $("#form_btn_add_form").prop('disabled', true);
     $.ajax({
         type:"POST",
-        url:"ajax/add_course.php",
+        url:"ajax/add_club.php",
         data:$("#form_submit_add_form").serialize(),
         success:function(data){
             if(data==1){
                 Swal.fire({
                     icon: 'success',
                     title: 'All Good!',
-                    text: 'Course Added Successfully',
-                })
+                    text: 'Club Added Successfully',
+                });
             	$('#form_submit_add_form')[0].reset();
             	get_datatable();
             }else{
@@ -162,43 +161,37 @@ $("#form_submit_add_form").submit(function(e){
                     icon: 'warning',
                     title: 'Opps!',
                     text: 'Failed Query!',
-                })
+                });
            }
-           $("#modalAddCourse").modal("hide");
+           $("#modalAdd").modal("hide");
            $("#form_btn_add_form").prop('disabled', false);
         }
       });
 });
 
 function get_datatable(){
-$("#datatable").DataTable().destroy();
+    $("#datatable").DataTable().destroy();
     $("#datatable").DataTable({
         "responsive": true,
         "processing": true,
         "ajax":{
             "type":"POST",
-            "url":"ajax/datatables/courses.php",
+            "url":"ajax/datatables/clubs.php",
             "dataSrc":"data", 
         },
         "columns":[
         {
             "mRender": function(data,type,row){
-                return "<input type='checkbox' class='delete_check_box' name='check_user' value='"+row.course_id+"'>";                
+                return "<input type='checkbox' class='delete_check_box' name='check_user' value='"+row.club_id+"'>";                
             }
         },
         {
             "mRender":function(data, type, row){
-                return "<button class='btn btn-success' style='padding: 5px 5px 5px 8px;' data-toggle='tooltip' title='Update Record' onclick='show_details_modal("+row.course_id+")'><i class='bi bi-pencil-square'></i></button>";
+                return "<button class='btn btn-success' style='padding: 5px 5px 5px 8px;' data-toggle='tooltip' title='Update Record' onclick='show_details_modal("+row.club_id+")'><i class='bi bi-pencil-square'></i></button>";
             }
         },
         {
-            "data":"course_name"
-        },
-        {
-            "data":"course_code"
-        },
-        {
-            "data":"course_grade"
+            "data":"club_name"
         },
         {
             "data":"date_added"

@@ -17,9 +17,9 @@
                     </div>
 
                     <div class="col-12">
-                        <label class="form-label">Sanction Desc</label>
+                        <label class="form-label">Sanction Description</label>
                         <div class="input-group has-validation">
-                        <input type="text" id="update_sanction_desc" name="update_sanction_desc" class="form-control" required>
+                        <textarea class="form-control" id="update_sanction_desc" name="update_sanction_desc"></textarea>
                         </div>
                     </div>
 				</div>

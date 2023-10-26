@@ -1,19 +1,32 @@
 <?php 
     include '../core/config.php';
     $user_id = $mysqli -> real_escape_string($_POST['user_id']);
+    $disable_send_btn = $user_id>0?"":"disabled";
     $fetch = $mysqli->query("SELECT * FROM tbl_users WHERE user_id='$user_id'") or die(mysqli_error());
     $row = $fetch->fetch_array();
+    $user_category = $row['category']=="A"?"Admin":"Student";    
 ?>
     <input type="hidden" id="receiver_id" value="<?= $user_id ?>">
     <div class="chat-header clearfix">
         <div class="row">
             <div class="col-lg-6">
+                <?php 
+                    if($user_id>0){ 
+                    $get_default_gender = $row['user_gender']=="F"?"https://bootdey.com/img/Content/avatar/avatar3.png":"https://bootdey.com/img/Content/avatar/avatar7.png";
+
+                    $profile_picture = $row['profile_img']==""?"$get_default_gender":'assets/upload/'.$row['profile_img'];
+
+                ?>
                 <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                    <img src="<?=$profile_picture?>" alt="avatar">
                 </a>
                 <div class="chat-about">
-                <h6 class="m-b-0 chat-heads-name"><?= $row['user_fname']." ".$row['user_lname']?></h6>
+                    <h6 class="m-b-0 chat-heads-name"><?= $row['user_fname']." ".$row['user_lname']?><br>
+                        <label style="color: #ccc;font-size: 14px;font-style: italic;"><?=$user_category?></label>
+                    </h6>
+
                 </div>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -21,10 +34,12 @@
     <div class="chat-history"></div>
 
     <div class="chat-message clearfix">
+        <?php if($user_id>0){ ?>
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Type your message" id="new_message">
             <button class="btn btn-primary" onclick="send_message()">Send</button>
         </div>
+        <?php } ?>
     </div>
 
 <script type="text/javascript">

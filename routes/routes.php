@@ -33,6 +33,8 @@
 		require_once $view.'osa_checklist_requirements.php';
 	}else if($page == 'messages'){
 		require_once $view.'messages.php';
+	}else if($page == 'clubs'){
+		require_once $view.'clubs.php';
 	}else{
 		require $view.'404.php';
 	}

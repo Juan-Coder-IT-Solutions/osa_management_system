@@ -26,7 +26,7 @@
 	                <tr>
 	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check_students')"></th>
 	                	<th scope="col"></th>
-	                    <th scope="col">Name</th>
+	                    <th scope="col">Full Name</th>
                       <th scope="col">Student Code</th>
 	                    <th scope="col">Gender</th>
                       <th scope="col">Course</th>

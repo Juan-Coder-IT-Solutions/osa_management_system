@@ -8,7 +8,7 @@
 				<form role="form" method="POST" id="form_submit_add_form">
 					<div class="modal-body">
 						<div class="col-12">
-							<label class="form-label">Name</label>
+							<label class="form-label">Academic Year</label>
 							<div class="input-group">
 								<input type="text" name="ay_name" class="form-control" required>
 							</div>

@@ -7,12 +7,12 @@
 			</div>
 			<form role="form" method="POST" id="form_submit_update_form">
 				<div class="modal-body">
-                    <input type="hidden" id="update_cr_id" name="update_cr_id">
+                    <input type="hidden" id="update_club_id" name="update_club_id">
 
                     <div class="col-12">
-                        <label class="form-label">Description</label>
+                        <label class="form-label">Club Name</label>
                         <div class="input-group has-validation">
-                        <input type="text" id="update_cr_desc" name="update_cr_desc" class="form-control" required>
+                        <input type="text" id="update_club_name" name="update_club_name" class="form-control" required>
                         </div>
                     </div>
 				</div>

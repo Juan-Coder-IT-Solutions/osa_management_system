@@ -22,7 +22,7 @@
 	                    </div>
 
 	                    <div class="col-12">
-	                      <label class="form-label">Grade</label>
+	                      <label class="form-label">Course Grade</label>
 	                      <div class="input-group has-validation">
 	                        <input type="number" name="grade" class="form-control" required>
 	                      </div>

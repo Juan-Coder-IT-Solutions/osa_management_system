@@ -8,6 +8,7 @@
 	while ($row = $fetch->fetch_array()) {
 		$list = array();
 		$list['of_id'] = $row['of_id'];
+		$list['club_id'] = $row['club_id'];
 		$list['student_id'] = $row['student_id'];
 		$list['of_type'] = $row['of_type'];
 		$list['ay_id'] = $row['ay_id'];

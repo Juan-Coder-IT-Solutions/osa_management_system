@@ -1,7 +1,7 @@
 <?php
 	include '../../core/config.php';
-
-	$fetch_user = $mysqli->query("SELECT * FROM tbl_offenses ORDER BY date_added DESC") or die(mysqli_error());
+	$ay_id = $_POST['ay_id'];
+	$fetch_user = $mysqli->query("SELECT * FROM tbl_offenses WHERE ay_id='$ay_id' ORDER BY date_added DESC") or die(mysqli_error());
 
 	$response['data'] = array();
 	$count = 1;
@@ -9,7 +9,7 @@
 		$list = array();
         $list['offense_id'] = $row['offense_id'];
 		$list['violation_id'] = violationName($row['violation_id']);
-		$list['student_id'] = studentFullName($row['student_id']);
+		$list['student_id'] = userFullName($row['student_id']);
         $list['sanction_id'] = sanctionName($row['sanction_id']);
         $list['ay_id'] = ayName($row['ay_id']);
         $list['offense_desc'] = $row['offense_desc'];

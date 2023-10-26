@@ -40,6 +40,7 @@
 
 <body>
   <!-- ======= Template Main JS File ======= -->
+   
   <script src="assets/js/main2.js"></script>
   <script src="assets/datatables/jquery.dataTables.min.js"></script>
   <script src="assets/vendor/sweet-alert/sweetalert2.all.min.js"></script>
@@ -60,9 +61,10 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- ======= Template Main JS File ======= -->
-  <script src="assets/js/main.js"></script>
+  <!-- <script src="assets/js/main.js"></script> -->
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+
  
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- ======= Vendor JS Files ======= -->
@@ -73,11 +75,43 @@
   <script src="assets/vendor/quill/quill.min.js"></script>
 
   <script src="assets/vendor/php-email-form/validate.js"></script>
+  <!-- Insert this script at the bottom of the HTML, but before you use any Firebase services -->
+ 
+ <!--paste firebase script here -->
 </body>
 
 <script type="text/javascript">
   $(document).ready(function() { 
+    count_notification();
   });
+
+  function redirect_to_message(user_id){
+    location.href = 'index.php?page=messages&chosen_user_id='+user_id; 
+  }
+
+  function notification_body(){
+    $.post("ajax/notification_body.php",
+      function(data){
+      $("#notification_body").html(data);
+    });
+  }
+
+  function count_notification(){
+    $.post("ajax/count_notification.php",
+      function(data){
+      $("#count_notification").html(data);
+      $("#count_notification_detail").html(data);
+      notification_body();
+    });
+  }
+
+  function mark_notification_as_read(sender_id){
+    $.post("ajax/mark_notification_as_read.php",{
+      sender_id:sender_id
+    },function(data){
+        count_notification();
+    });
+  }
 
   function checkAll(ele, ref) {
     var checkboxes = document.getElementsByName(ref);

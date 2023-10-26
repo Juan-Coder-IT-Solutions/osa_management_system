@@ -4,7 +4,7 @@
       <h1>Violations</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">Pages</li>
+          <li class="breadcrumb-item">Sanctions & Violations</li>
           <li class="breadcrumb-item active">Violations</li>
         </ol>
       </nav>
@@ -27,9 +27,9 @@
 	                <tr>
 	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check_user')"></th>
 	                	<th scope="col"></th>
-	                    <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Remarks</th>
+	                    <th scope="col">Violation Name</th>
+                        <th scope="col">Violation Description</th>
+                        <th scope="col">Violation Remarks</th>
 	                    <th scope="col">Date Added</th>
 	                </tr>
 	            </thead>
@@ -63,7 +63,7 @@ $("#form_submit_update_form").submit(function(e){
                 Swal.fire({
                     icon: 'success',
                     title: 'All Good!',
-                    text: 'Violations updated uccessfully',
+                    text: 'Violations updated successfully',
                 });
             	get_datatable();
             	$("#modalUpdate").modal("hide");

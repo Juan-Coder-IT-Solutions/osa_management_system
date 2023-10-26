@@ -19,7 +19,12 @@ include '../core/config.php';
 		    	</ul>";
 		}
 	}else{
-		echo "<center><h5>No message found ..</h5></center>";
+		if($receiver_id>0){
+			echo "<center><h5>No message found ..</h5></center>";
+		}else{
+			echo "<center><h5>Osa Management Messaging Module</h5></center>";
+		}
+		
 	}
  ?>
  	

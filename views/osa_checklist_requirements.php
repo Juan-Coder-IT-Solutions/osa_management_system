@@ -1,11 +1,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Checklist Requirements</h1>
+      <h1>OSA Checklist Requirements</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Checklist Requirements</li>
+          <li class="breadcrumb-item">Master Data</li>
+          <li class="breadcrumb-item active">OSA Checklist Requirements</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -27,7 +27,7 @@
 	                <tr>
 	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check_checklist_requirements')"></th>
 	                	<th scope="col"></th>
-	                    <th scope="col">CR Desc</th>
+	                    <th scope="col">Description</th>
 	                    <th scope="col">Date Added</th>
 	                </tr>
 	            </thead>

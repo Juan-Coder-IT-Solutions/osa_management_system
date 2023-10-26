@@ -1,11 +1,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Application For Exemplary Students</h1>
+      <h1>Application for Exemplary Students</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Application For Exemplary Students</li>
+          <li class="breadcrumb-item">Master Data</li>
+          <li class="breadcrumb-item active">Application for Exemplary Students</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -27,8 +27,8 @@
 	                <tr>
 	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check_user')"></th>
 	                	<th scope="col"></th>
-	                    <th scope="col">Description</th>
                         <th scope="col">Student</th>
+	                    <th scope="col">Description</th>
 	                    <th scope="col">Date Added</th>
 	                </tr>
 	            </thead>
@@ -97,6 +97,7 @@ function show_details_modal(primary_id){
         },function(data){
            	var get_data = JSON.parse(data);
             $("#update_es_id").val(get_data[0].es_id);
+            $("#update_student_id").val(get_data[0].student_id);
             $("#update_es_desc").val(get_data[0].es_desc);
     });
 }
@@ -186,12 +187,12 @@ function get_datatable(){
 	            return "<button class='btn btn-success' style='padding: 5px 5px 5px 8px;' data-toggle='tooltip' title='Update Record' onclick='show_details_modal("+row.es_id+")'><i class='bi bi-pencil-square'></i></button>";
 	        }
 	    },
-	    {
-	        "data":"description"
-	    },
         {
             "data":"student"
         },
+	    {
+	        "data":"description"
+	    },
 	    {
 	        "data":"date_added"
 	    }

@@ -8,7 +8,7 @@
 			<form role="form" method="POST" id="form_submit_add_form">
 				<div class="modal-body">
                     <div class="col-12">
-                        <label class="form-label">CR Desc</label>
+                        <label class="form-label">Description</label>
                         <div class="input-group has-validation">
                         <input type="text" name="cr_desc" class="form-control" required>
                         </div>

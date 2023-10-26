@@ -10,7 +10,7 @@
                     <input type="hidden" id="update_services_id" name="update_services_id">
 
                     <div class="col-12">
-                        <label class="form-label">Services Desc</label>
+                        <label class="form-label">Service Description</label>
                         <div class="input-group has-validation">
                         <input type="text" id="update_services_desc" name="update_services_desc" class="form-control" required>
                         </div>

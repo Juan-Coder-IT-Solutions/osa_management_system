@@ -4,8 +4,8 @@
       <h1>Services Under OSA</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Services</li>
+          <li class="breadcrumb-item">Master Data</li>
+          <li class="breadcrumb-item active">Services Under OSA</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -27,7 +27,7 @@
 	                <tr>
 	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check_services')"></th>
 	                	<th scope="col"></th>
-	                  <th scope="col">Services Desc</th>
+	                  <th scope="col">Service Description</th>
 	                  <th scope="col">Date Added</th>
 	                </tr>
 	            </thead>
@@ -70,7 +70,6 @@ $("#form_submit_update_form").submit(function(e){
                 url:"ajax/update_services.php",
                 data:$("#form_submit_update_form").serialize(),
                 success:function(data){
-                    console.log(data);
                     if(data==1){
                         Swal.fire({
                             icon: 'success',
@@ -99,7 +98,6 @@ function show_details_modal(primary_id){
         {
           services_id:primary_id
         },function(data){
-          console.log(data);
            	var get_data = JSON.parse(data);
             $("#update_services_id").val(get_data[0].services_id);
             $("#update_services_desc").val(get_data[0].services_desc);
@@ -150,7 +148,6 @@ $("#form_submit_add_form").submit(function(e){
     url:"ajax/add_service.php",
     data:$("#form_submit_add_form").serialize(),
     success:function(data){
-      console.log(data);
       if(data==1){
           Swal.fire({
               icon: 'success',

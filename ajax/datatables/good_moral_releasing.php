@@ -10,7 +10,8 @@
 
 		$list['good_moral_id'] 	= $row['good_moral_id'];
 		$list['description'] = $row['good_modal_desc'];
-		$list['student'] = studentFullName($row['student_id']);
+		$list['academic_year'] = ayName($row['ay_id']);
+		$list['student'] = userFullName($row['student_id']);
 		$list['date_added'] = date("F j, Y h:i A",strtotime($row['date_added']));
 
 		array_push($response['data'], $list);

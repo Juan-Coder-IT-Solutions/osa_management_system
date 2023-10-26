@@ -4,7 +4,7 @@
       <h1>Academic Year</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Pages</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Master Data</a></li>
           <li class="breadcrumb-item active">Academic Year</li>
         </ol>
       </nav>
@@ -27,7 +27,7 @@
 	                <tr>
 	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check_user')"></th>
 	                	<th scope="col"></th>
-	                    <th scope="col">Name</th>
+	                    <th scope="col">Academic Year</th>
 	                    <th scope="col">Date Added</th>
 	                </tr>
 	            </thead>
@@ -110,43 +110,63 @@ function delete_entry(){
     }).get();
     id = [];
 
-    var confirmation = confirm("Are you sure you want to delete?");
-
-    if(confirmation == true){
-        $.post("ajax/delete_academic_year.php",
-        {
-            id:checkedValues
-        },function(data){
-            if(data == 1){
-                alert("Success delete");
-                get_datatable();
-            }else{
-               alert("Failed Query!");
-            }   
-        });
-    }
+    Swal.fire({
+        title: 'Delete',
+        text: "Are you sure you want to proceed?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Proceed'
+    }).then((result) => {
+        if(result.isConfirmed){
+            $.post("ajax/delete_academic_year.php",
+            {
+                id:checkedValues
+            },function(data){
+                if(data == 1){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'All Good!',
+                        text: 'Academic Year deleted successfully',
+                    });
+                    get_datatable();
+                }else{
+                    Swal.fire({
+                        icon: 'danger',
+                        title: 'Opps!',
+                        text: 'Failed Query',
+                    });
+                }   
+            });  
+        }
+    });
 }
 
 
 $("#form_submit_add_form").submit(function(e){
-    e.preventDefault();
-    $("#form_btn_add_form").prop('disabled', true);
-    $.ajax({
-        type:"POST",
-        url:"ajax/add_academic_year.php",
-        data:$("#form_submit_add_form").serialize(),
-        success:function(data){
-            if(data==1){
-            	alert("Success Add!");
-            	document.getElementById("form_submit_add_form").reset();
-            	get_datatable();
-            }else{
-            	alert("Failed Query!");
-           }
-           $("#modalAdd").modal("hide");
-           $("#form_btn_add_form").prop('disabled', false);
-        }
-      });
+  $.ajax({
+    type:"POST",
+    url:"ajax/add_academic_year.php",
+    data:$("#form_submit_add_form").serialize(),
+    success:function(data){
+      if(data==1){
+          Swal.fire({
+              icon: 'success',
+              title: 'All Good!',
+              text: 'Academic Year Added Successfully',
+          });
+        $('#form_submit_add_form')[0].reset();
+        get_datatable();
+      }else{
+        Swal.fire({
+              icon: 'warning',
+              title: 'Opps!',
+              text: 'Failed Query!',
+          });
+      }
+      $("#modalAdd").modal('hide');
+      $("#form_btn_add_form").prop('disabled', false);
+    }
+  });
 });
 
 function get_datatable(){

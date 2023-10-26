@@ -4,7 +4,7 @@
       <h1>Good Moral Releasing</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">Pages</li>
+          <li class="breadcrumb-item">Master Data</li>
           <li class="breadcrumb-item active">Good Moral Releasing</li>
         </ol>
       </nav>
@@ -24,6 +24,7 @@
             	<div class="col-sm-4">
             		<label class="form-label">Academic Year</label>
 	                  <select id="ay_id" class="form-select" onchange="get_datatable()">
+                        <option value=''>-- Select Academic Year--</option>
 	                    <?php 
 	                    	$fetch_ay = $mysqli->query("SELECT * FROM tbl_academic_year ORDER BY ay_name ASC") or die(mysqli_error());
 							while ($ay_row = $fetch_ay->fetch_array()) {
@@ -41,8 +42,9 @@
 	                <tr>
 	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check_user')"></th>
 	                	<th scope="col"></th>
+                        <th scope="col">Academic Year</th>
+                        <th scope="col">Student</th>
 	                    <th scope="col">Description</th>
-	                    <th scope="col">Student</th>
 	                    <th scope="col">Date Added</th>
 	                </tr>
 	            </thead>
@@ -206,12 +208,15 @@ function get_datatable(){
 	            return "<button class='btn btn-success' style='padding: 5px 5px 5px 8px;' data-toggle='tooltip' title='Update Record' onclick='show_details_modal("+row.good_moral_id+")'><i class='bi bi-pencil-square'></i></button>";
 	        }
 	    },
-	    {
-	        "data":"description"
-	    },
+        {
+            "data":"academic_year"
+        },
         {
             "data":"student"
         },
+	    {
+	        "data":"description"
+	    },
 	    {
 	        "data":"date_added"
 	    }

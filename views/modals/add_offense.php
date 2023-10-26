@@ -10,7 +10,8 @@
 					
                     <div class="col-12">
                        	<label class="form-label">Violation</label>
-		                  <select name="violation_id" class="form-select">
+		                  <select name="violation_id" class="form-select" required>
+		                  	<option value=''>-- Select Violation --</option>
 		                    <?php 
 		                    	$fetch_violation = $mysqli->query("SELECT * FROM tbl_violations ORDER BY violation_name ASC") or die(mysqli_error());
 								while ($violation_row = $fetch_violation->fetch_array()) {
@@ -22,19 +23,21 @@
 
                     <div class="col-12">
                        	<label class="form-label">Student</label>
-		                  <select name="student_id" class="form-select">
+		                  <select name="student_id" class="form-select" required>
+		                  	<option value=''>-- Select Student --</option>
 		                    <?php 
-		                    	$fetch_student = $mysqli->query("SELECT * FROM tbl_students ORDER BY student_fname ASC") or die(mysqli_error());
+								$fetch_student = $mysqli->query("SELECT * FROM tbl_users WHERE category='S' ORDER BY user_fname ASC") or die(mysqli_error());
 								while ($student_row = $fetch_student->fetch_array()) {
-									echo "<option value='$student_row[student_id]'>$student_row[student_lname], $student_row[student_fname] $student_row[student_mname]</option>";
+									echo "<option value='$student_row[user_id]'>$student_row[user_lname], $student_row[user_fname] $student_row[user_mname]</option>";
 								}
-		                    ?>
+							?>
 		                </select>
                     </div>
 
                     <div class="col-12">
                        	<label class="form-label">Sanction</label>
-		                  <select name="sanction_id" class="form-select">
+		                  <select name="sanction_id" class="form-select" required>
+		                  	<option value=''>-- Select Sanction --</option>
 		                    <?php 
 		                    	$fetch_sanction = $mysqli->query("SELECT * FROM tbl_sanctions ORDER BY sanction_name ASC") or die(mysqli_error());
 								while ($sanction_row = $fetch_sanction->fetch_array()) {
@@ -46,7 +49,8 @@
 
                     <div class="col-12">
                        	<label class="form-label">Academic Year</label>
-		                  <select name="ay_id" class="form-select">
+		                  <select name="ay_id" class="form-select" required>
+		                  	<option value=''>-- Select Academic Year --</option>
 		                    <?php 
 		                    	$fetch_ay = $mysqli->query("SELECT * FROM tbl_academic_year ORDER BY ay_name ASC") or die(mysqli_error());
 								while ($ay_row = $fetch_ay->fetch_array()) {

@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+
 
 <style type="text/css">
 body{
     background-color: #f4f7f6;
-    margin-top:20px;
 }
 .chat-history {
     height: 300px;
@@ -271,7 +269,7 @@ body{
 
 
 <main id="main" class="main">
-
+    <input type="hidden" id="chosen_user_id" value="<?= $_GET['chosen_user_id']?>">
     <div class="pagetitle">
       <h1>Messages</h1>
     </div>
@@ -291,17 +289,26 @@ body{
                         $user_list_param = $user_category=="A"?"category='S'":"category='A'";
                         $fetch_user_list = $mysqli->query("SELECT * FROM tbl_users WHERE $user_list_param ORDER BY user_fname ASC") or die(mysqli_error());
                         while ($user_list_row = $fetch_user_list->fetch_array()) {
+                            $get_default_gender = $user_list_row['user_gender']=="F"?"https://bootdey.com/img/Content/avatar/avatar3.png":"https://bootdey.com/img/Content/avatar/avatar7.png";
+
+                            $profile_picture = $user_list_row['profile_img']==""?"$get_default_gender":'assets/upload/'.$user_list_row['profile_img'];
+
+                            $fetch_count_message = $mysqli->query("SELECT * FROM tbl_messages WHERE receiver_id='$session_user_id' AND status='U' AND sender_id='$user_list_row[user_id]'") or die(mysqli_error());
+                            $count_messages = mysqli_num_rows($fetch_count_message);
+
+                            $new_message_badge = $count_messages>0?"<span class='badge bg-primary badge-number' id='new_message_badge_$user_list_row[user_id]'>$count_messages</span>":"";
+
                             echo "<li class='clearfix user_message<?=$user_list_row[user_id]?>' onclick='open_user_messages($user_list_row[user_id])'>
-                                    <img src='https://bootdey.com/img/Content/avatar/avatar2.png' alt='avatar'>
+                                    <img src='$profile_picture' alt='avatar'>
                                     <div class='about'>
-                                        <div class='name'>".$user_list_row['user_fname']." ".$user_list_row['user_lname']."</div>
+                                        <div class='name'>".$user_list_row['user_fname']." ".$user_list_row['user_lname']." $new_message_badge</div> 
                                     </div>
                                 </li>";
                         }
                     ?>
                 </ul>
-            </div>
-            <div class="chat"> </div>
+            </div><br><br>
+            <div class="chat"></div>
         </div>
     </div>
 
@@ -309,7 +316,13 @@ body{
 
 <script type="text/javascript">
 $(document).ready(function() {
-    open_user_messages("");
+    var chosen_user_id = $("#chosen_user_id").val()*1;
+    if(chosen_user_id>0){
+        open_user_messages(chosen_user_id);
+        window.history.pushState("", "", 'index.php?page=messages');
+    }else{
+        open_user_messages("");
+    }
 });
 function open_user_messages(user_id){
     $.post("ajax/message_box.php",{
@@ -317,10 +330,17 @@ function open_user_messages(user_id){
     },function(data){
         $(".chat").html(data);
         $("#new_message").focus();
-        
+        mark_messages_as_read(user_id);
+        $("#new_message_badge_"+user_id).html("");
+
     });
 }
 
-
-
+function mark_messages_as_read(sender_id){
+    $.post("ajax/mark_messages_as_read.php",{
+        sender_id:sender_id
+    },function(data){
+        count_notification();
+    });
+}
 </script>

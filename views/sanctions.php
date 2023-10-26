@@ -4,7 +4,7 @@
       <h1>Sanctions</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">Pages</li>
+          <li class="breadcrumb-item">Sanctions & Violations</li>
           <li class="breadcrumb-item active">Sanctions</li>
         </ol>
       </nav>
@@ -28,7 +28,7 @@
 	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check_user')"></th>
 	                	<th scope="col"></th>
 	                    <th scope="col">Sanction Name</th>
-	                    <th scope="col">Sanction Desc</th>
+	                    <th scope="col">Sanction Description</th>
                         <th scope="col">Date Added</th>
 	                </tr>
 	            </thead>

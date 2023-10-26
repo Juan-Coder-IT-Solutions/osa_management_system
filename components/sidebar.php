@@ -9,7 +9,7 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
-      <li class="nav-heading">Pages</li>
+      <li class="nav-heading">Master Data</li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=academic_year">
@@ -47,16 +47,25 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.php?page=students">
-          <i class="bi bi-people-fill"></i>
-          <span>Students</span>
+        <a class="nav-link collapsed" href="index.php?page=osa_checklist_requirements">
+          <i class="bi bi-list-check"></i>
+          <span>OSA Checklist Requirements</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.php?page=violations">
-          <i class="bi bi-card-list"></i>
-          <span>Violation</span>
+        <a class="nav-link collapsed" href="index.php?page=services">
+          <i class="bi bi-file-earmark-ruled"></i>
+          <span>Services Under OSA</span>
+        </a>
+      </li>
+
+      <li class="nav-heading">Sanctions & Violations</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.php?page=offenses">
+          <i class="bi bi-dash-circle"></i>
+          <span>Offenses</span>
         </a>
       </li>
 
@@ -68,16 +77,18 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.php?page=services">
-          <i class="bi bi-file-earmark-ruled"></i>
-          <span>Services Under OSA</span>
+        <a class="nav-link collapsed" href="index.php?page=violations">
+          <i class="bi bi-card-list"></i>
+          <span>Violation</span>
         </a>
       </li>
 
+      <li class="nav-heading">Organizations</li>
+
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.php?page=offenses">
-          <i class="bi bi-dash-circle"></i>
-          <span>Offenses</span>
+        <a class="nav-link collapsed" href="index.php?page=clubs">
+          <i class="bi bi-house"></i>
+          <span>Clubs</span>
         </a>
       </li>
 
@@ -88,12 +99,14 @@
         </a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="index.php?page=osa_checklist_requirements">
-          <i class="bi bi-list-check"></i>
-          <span>OSA Checklist Requirements</span>
+ <!--      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.php?page=students">
+          <i class="bi bi-people-fill"></i>
+          <span>Students</span>
         </a>
-      </li>
+      </li> -->
+
+      <li class="nav-heading">Security</li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=users">

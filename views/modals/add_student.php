@@ -48,7 +48,8 @@
 
 	                    <div class="col-12">
 	                        <label for="student_gender" class="form-label">Gender</label>
-			                  <select id="student_gender" name="student_gender" class="form-select">
+			                  <select id="student_gender" name="student_gender" class="form-select" required>
+			                  	<option value=''>-- Select Gender --</option>
 			                    <option value="Male">Male</option>
 			                    <option value="Female">Female</option>
 			                </select>
@@ -69,7 +70,8 @@
 
                     <div class="col-12">
                        	<label for="course_id" class="form-label">Course</label>
-		                  <select  id="course_id" name="course_id" class="form-select">
+		                  <select  id="course_id" name="course_id" class="form-select" required>
+		                  	<option value=''>-- Select Course --</option>
 		                    <?php 
 		                    	$fetch_course = $mysqli->query("SELECT * FROM tbl_courses ORDER BY course_name ASC") or die(mysqli_error());
 								while ($course_row = $fetch_course->fetch_array()) {

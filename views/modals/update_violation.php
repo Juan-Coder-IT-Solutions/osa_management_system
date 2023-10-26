@@ -10,19 +10,19 @@
 						<input type="hidden" id="update_violation_id" name="update_violation_id">
 
 	                    <div class="col-12">
-	                      <label class="form-label">Name</label>
+	                      <label class="form-label">Violation Name</label>
 	                      <div class="input-group has-validation">
 	                        <input type="text"  id="update_violation_name" name="update_violation_name" class="form-control" required>
 	                      </div>
 	                    </div>	
                         
                         <div class="col-12">
-                            <label class="form-label">Remarks</label>
+                            <label class="form-label">Violation Remarks</label>
                             <textarea class="form-control" placeholder="Remarks"  id="update_violation_remarks" name="update_violation_remarks"></textarea>
                         </div>
 
                         <div class="col-12">
-                            <label class="form-label">Description</label>
+                            <label class="form-label">Violation Description</label>
                             <textarea class="form-control" placeholder="Description"  id="update_violation_desc" name="update_violation_desc"></textarea>
                         </div>
 	                

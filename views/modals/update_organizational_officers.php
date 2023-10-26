@@ -12,7 +12,8 @@
 
 					<div class="col-12" style="margin-bottom:10px">
 						<label class="form-label">Academic Year</label>
-							<select id="update_ay_id" name="update_ay_id" class="form-select">
+							<select id="update_ay_id" name="update_ay_id" class="form-select" required>
+							<option value=''>-- Select Academic Year --</option>
 							<?php 
 								$fetch_ay = $mysqli->query("SELECT * FROM tbl_academic_year ORDER BY ay_name ASC") or die(mysqli_error());
 								while ($ay_row = $fetch_ay->fetch_array()) {
@@ -22,24 +23,45 @@
 						</select>
 					</div>
 
+					<div class="col-12" style="margin-bottom:10px">
+						<label class="form-label">Club</label>
+							<select id="update_club_id" name="update_club_id" class="form-select" required>
+							<option value=''>-- Select Club --</option>
+							<?php 
+								$fetch_club = $mysqli->query("SELECT * FROM tbl_clubs ORDER BY club_name ASC") or die(mysqli_error());
+								while ($club_row = $fetch_club->fetch_array()) {
+									echo "<option value='$club_row[club_id]'>$club_row[club_name]</option>";
+								}
+							?>
+						</select>
+					</div>
+
                     <div class="col-12">
                         <label class="form-label">Student</label>
                         <div class="input-group has-validation">
-						<select id="update_student_id" name="update_student_id" class="form-select">
+						<select id="update_student_id" name="update_student_id" class="form-select" required>
+							<option value=''>-- Select Student --</option>
 		                    <?php 
-		                    	$fetch_student = $mysqli->query("SELECT * FROM tbl_students ORDER BY student_fname ASC") or die(mysqli_error());
+								$fetch_student = $mysqli->query("SELECT * FROM tbl_users WHERE category='S' ORDER BY user_fname ASC") or die(mysqli_error());
 								while ($student_row = $fetch_student->fetch_array()) {
-									echo "<option value='$student_row[student_id]'>$student_row[student_lname], $student_row[student_fname] $student_row[student_mname]</option>";
+									echo "<option value='$student_row[user_id]'>$student_row[user_lname], $student_row[user_fname] $student_row[user_mname]</option>";
 								}
-		                    ?>
+							?>
 		                </select>
                         </div>
                     </div>
 
                     <div class="col-12">
-                        <label class="form-label">OF Type</label>
+                        <label class="form-label">Type</label>
                         <div class="input-group has-validation">
-                        <input type="text" id="update_of_type" name="update_of_type" class="form-control" required>
+                        <select class="form-control" name="update_of_type" id="update_of_type" required>
+	                        	<option>-- Select Type --</option>
+	                        	<option>President</option>
+	                        	<option>Vice President</option>
+	                        	<option>Secretary</option>
+	                        	<option>Treasurer</option>
+	                        	<option>Member</option>
+	                        </select>
                         </div>
                     </div>
 				</div>

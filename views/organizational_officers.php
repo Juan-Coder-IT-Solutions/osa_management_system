@@ -4,8 +4,8 @@
       <h1>Organizational Officers</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Organizational</li>
+          <li class="breadcrumb-item">Organizations</li>
+          <li class="breadcrumb-item active">Organizational Officers</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -40,8 +40,9 @@
 	                <tr>
 	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check')"></th>
 	                	<th scope="col"></th>
+                        <th scope="col">Club</th>
 	                    <th scope="col">Student</th>
-                        <th scope="col">OF Type</th>
+                        <th scope="col">Type</th>
                         <th scope="col">Academic Year</th>
 	                    <th scope="col">Date Added</th>
 	                </tr>
@@ -76,6 +77,7 @@ function show_details_modal(primary_id){
         },function(data){
            	var get_data = JSON.parse(data);
             $("#update_of_id").val(get_data[0].of_id);
+            $("#update_club_id").val(get_data[0].club_id);
             $("#update_student_id").val(get_data[0].student_id);
             $("#update_of_type").val(get_data[0].of_type);
             $("#update_ay_id").val(get_data[0].ay_id);
@@ -167,7 +169,6 @@ $("#form_submit_add_form").submit(function(e){
         url:"ajax/add_organizational_officers.php",
         data:$("#form_submit_add_form").serialize(),
         success:function(data){
-            alert(data);
             if(data==1){
                 Swal.fire({
                     icon: 'success',
@@ -190,7 +191,7 @@ $("#form_submit_add_form").submit(function(e){
 });
 
 function get_datatable(){
-    var ay_id = $("#ay_id").val()
+    var ay_id = $("#ay_id").val();
     $("#datatable").DataTable().destroy();
     $("#datatable").DataTable({
         "responsive": true,
@@ -213,6 +214,9 @@ function get_datatable(){
             "mRender":function(data, type, row){
                 return "<button class='btn btn-success' style='padding: 5px 5px 5px 8px;' data-toggle='tooltip' title='Update Record' onclick='show_details_modal("+row.of_id+")'><i class='bi bi-pencil-square'></i></button>";
             }
+        },
+        {
+            "data":"club"
         },
         {
             "data":"student"
