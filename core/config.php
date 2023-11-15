@@ -1,13 +1,13 @@
 <?php
-	define("DB_SERVER", "localhost");
-	define("DB_USER", "root");
-	define("DB_PASSWORD", "");
-	define("DB_DATABASE", "osa_db");
-
 	// define("DB_SERVER", "localhost");
-	// define("DB_USER", "u814036432_osa_root");
-	// define("DB_PASSWORD", "lRgyd80Xn]0Q");
-	// define("DB_DATABASE", "u814036432_osa_db");
+	// define("DB_USER", "root");
+	// define("DB_PASSWORD", "");
+	// define("DB_DATABASE", "osa_db");
+
+	define("DB_SERVER", "localhost");
+	define("DB_USER", "u814036432_osa_root");
+	define("DB_PASSWORD", "lRgyd80Xn]0Q");
+	define("DB_DATABASE", "u814036432_osa_db");
 	
 	
 	ini_set('date.timezone','UTC');
