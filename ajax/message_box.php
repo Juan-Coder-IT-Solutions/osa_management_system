@@ -12,10 +12,7 @@
             <div class="col-lg-6">
                 <?php 
                     if($user_id>0){ 
-                    $get_default_gender = $row['user_gender']=="F"?"https://bootdey.com/img/Content/avatar/avatar3.png":"https://bootdey.com/img/Content/avatar/avatar7.png";
-
-                    $profile_picture = $row['profile_img']==""?"$get_default_gender":'assets/upload/'.$row['profile_img'];
-
+                        $profile_picture = !empty($row['profile_img'])? 'assets/upload/'.$row["profile_img"] : 'assets/upload/default.png';
                 ?>
                 <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
                     <img src="<?=$profile_picture?>" alt="avatar">

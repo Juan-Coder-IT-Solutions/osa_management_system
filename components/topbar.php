@@ -3,11 +3,8 @@
     $getUser = $mysqli->query("SELECT * FROM tbl_users WHERE user_id ='$user_id' ");
     $row = $getUser->fetch_array();
 
-    if(!empty($row['profile_img'])){
-      $prof_img = 'assets/upload/'.$row["profile_img"];
-    }else{
-      $prof_img = "assets/upload/default.png";
-    }
+    $prof_img = !empty($row['profile_img'])? 'assets/upload/'.$row["profile_img"]:'assets/upload/default.png';
+    
   ?>
   <header id="header" class="header fixed-top d-flex align-items-center">
 

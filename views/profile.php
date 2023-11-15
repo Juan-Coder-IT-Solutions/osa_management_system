@@ -3,11 +3,8 @@
   $getData = $mysqli->query("SELECT * FROM tbl_users where user_id='$user_id'");
   $rowData = $getData->fetch_array();
 
-  if(!empty($rowData['profile_img'])){
-    $prof_img = 'assets/upload/'.$rowData["profile_img"];
-  }else{
-    $prof_img = "assets/upload/default.png";
-  }
+  $prof_img = !empty($rowData['profile_img'])?'assets/upload/'.$rowData["profile_img"]:'assets/upload/default.png';
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,7 +77,7 @@
                       <label class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
                         
-                      <div id="imagePreview" style="object-fit: cover;">
+                      <div id="imagePreview">
 		                  </div>
 
                         <input type="file" name="profileImage" class="form-control" id="customFile" />

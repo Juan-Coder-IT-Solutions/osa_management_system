@@ -289,9 +289,8 @@ body{
                         $user_list_param = $user_category=="A"?"category='S'":"category='A'";
                         $fetch_user_list = $mysqli->query("SELECT * FROM tbl_users WHERE $user_list_param ORDER BY user_fname ASC") or die(mysqli_error());
                         while ($user_list_row = $fetch_user_list->fetch_array()) {
-                            $get_default_gender = $user_list_row['user_gender']=="F"?"https://bootdey.com/img/Content/avatar/avatar3.png":"https://bootdey.com/img/Content/avatar/avatar7.png";
-
-                            $profile_picture = $user_list_row['profile_img']==""?"$get_default_gender":'assets/upload/'.$user_list_row['profile_img'];
+                            
+                            $profile_picture = !empty($user_list_row['profile_img'])? 'assets/upload/'.$user_list_row["profile_img"] : 'assets/upload/default.png';
 
                             $fetch_count_message = $mysqli->query("SELECT * FROM tbl_messages WHERE receiver_id='$session_user_id' AND status='U' AND sender_id='$user_list_row[user_id]'") or die(mysqli_error());
                             $count_messages = mysqli_num_rows($fetch_count_message);
