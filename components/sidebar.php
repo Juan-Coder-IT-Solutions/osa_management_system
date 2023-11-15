@@ -1,7 +1,6 @@
 <aside id="sidebar" class="sidebar">
-
     <ul class="sidebar-nav" id="sidebar-nav">
-
+   
       <li class="nav-item">
         <a class="nav-link " href="index.php?page=dashboard">
           <i class="bi bi-grid"></i>
@@ -9,8 +8,9 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
+   
       <li class="nav-heading">Master Data</li>
-
+    <?php if($category == 'A' ){?>
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=academic_year">
           <i class="bi bi-calendar"></i>
@@ -24,14 +24,19 @@
           <span>Application For Exemplary Students</span>
         </a>
       </li>
+    <?php } ?>
 
+    <?php if($category == 'A' || $category == 'S'){?>
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=calendar_of_activities">
           <i class="bi bi-calendar-event"></i>
           <span>Calendar of Activities</span>
         </a>
       </li>
+    <?php } ?>
+    
 
+    <?php if($category == 'A' ){?>
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=courses">
           <i class="bi bi-collection"></i>
@@ -60,7 +65,7 @@
         </a>
       </li>
 
-      <li class="nav-heading">Sanctions & Violations</li>
+      <!-- <li class="nav-heading">Sanctions & Violations</li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php?page=offenses">
@@ -81,7 +86,7 @@
           <i class="bi bi-card-list"></i>
           <span>Violation</span>
         </a>
-      </li>
+      </li> -->
 
       <li class="nav-heading">Organizations</li>
 
@@ -114,6 +119,8 @@
           <span>Users</span>
         </a>
       </li>
+      <?php } ?>
     </ul>
+
 
   </aside><!-- End Sidebar-->

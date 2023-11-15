@@ -2,6 +2,12 @@
   $user_id = $_SESSION['user_id'];
   $getData = $mysqli->query("SELECT * FROM tbl_users where user_id='$user_id'");
   $rowData = $getData->fetch_array();
+
+  if(!empty($rowData['profile_img'])){
+    $prof_img = 'assets/upload/'.$rowData["profile_img"];
+  }else{
+    $prof_img = "assets/upload/default.png";
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +34,7 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <div id="imagePreviewProfile"></div>
+              <div id="imagePreviewProfile" style="object-fit: cover;"></div>
               <h2><?=userFullName($user_id)?></h2>
             </div>
           </div>
@@ -74,7 +80,7 @@
                       <label class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
                         
-                      <div id="imagePreview" >
+                      <div id="imagePreview" style="object-fit: cover;">
 		                  </div>
 
                         <input type="file" name="profileImage" class="form-control" id="customFile" />
@@ -166,11 +172,11 @@
 
 $(document).ready(function (e) {
   displayImg();
-	$('#imagePreview').html("<img src='assets/upload/<?=$rowData['profile_img']?>' alt='Profile' style='margin-bottom: 10px;'>");
+	$('#imagePreview').html("<img src='<?=$prof_img?>' alt='Profile' style='margin-bottom: 10px;'>");
 });
 
 function displayImg(){
-  $('#imagePreviewProfile').html("<img src='assets/upload/<?=$rowData['profile_img']?>' alt='Profile' class='rounded-circle'>");
+  $('#imagePreviewProfile').html("<img src='<?=$prof_img?>' alt='Profile' class='rounded-circle'>");
 }
 
 

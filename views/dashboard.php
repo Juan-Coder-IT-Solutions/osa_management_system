@@ -82,7 +82,7 @@
               </div>
             </div>
         
-        <div class="col-lg-12 col-md-12 col-sm-12">
+        <!-- <div class="col-lg-12 col-md-12 col-sm-12">
           <a href="index.php?page=academic_year"><div class="col-sm-3" style="float:left; width: 25%; margin: 10px; background: #F44336; color: #fff; text-align: center; padding: 20px; border-radius: 5px;">
             <span>Academic Year</span>
           </div></a>
@@ -105,7 +105,7 @@
             <span>Offenses</span>
           </div></a>
           
-        </div>
+        </div> -->
 
       </div>
     </section>

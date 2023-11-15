@@ -2,6 +2,12 @@
     $user_id = $_SESSION['user_id'];
     $getUser = $mysqli->query("SELECT * FROM tbl_users WHERE user_id ='$user_id' ");
     $row = $getUser->fetch_array();
+
+    if(!empty($row['profile_img'])){
+      $prof_img = 'assets/upload/'.$row["profile_img"];
+    }else{
+      $prof_img = "assets/upload/default.png";
+    }
   ?>
   <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -49,16 +55,17 @@
               <a href="#" onclick="mark_notification_as_read('All')"><span class="badge rounded-pill bg-primary p-2 ms-2">Mark all as read</span></a>
             </li>
             <li><hr class="dropdown-divider"></li>
-            <div id="notification_body" style="height: auto;overflow: auto;max-height: 300px;"></div>
+            <div id="notification_body" style="height: auto;overflow: auto;max-height: 300px;cursor: pointer;"></div>
 
           </ul><!-- End Notification Dropdown Items -->
 
         </li><!-- End Notification Nav -->
 
 
+
         <li class="nav-item dropdown pe-3">
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-          <img src="assets/upload/<?=$row['profile_img']?>" alt="Profile" class="rounded-circle">
+          <img src="<?=$prof_img?>" alt="Profile" class="rounded-circle" style='object-fit: cover;height: 36px;width: 36px;'>
             <span class="d-none d-md-block dropdown-toggle ps-2"><?=user_info("user_fname",$user_id)." ".user_info("user_lname",$user_id)?></span>
           </a><!-- End Profile Iamge Icon -->
 

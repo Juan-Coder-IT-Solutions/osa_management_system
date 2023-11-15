@@ -7,7 +7,7 @@
     $username = $_POST['username'];
     $password = md5($_POST['password']);
 
-    $query 	= $mysqli->query("INSERT INTO tbl_users SET `user_fname` ='$fname', `user_mname`='$mname', `user_lname`='$lname', `username`='$username', password='$password'");
+    $query 	= $mysqli->query("INSERT INTO tbl_users SET `user_fname` ='$fname', `user_mname`='$mname', `user_lname`='$lname', `username`='$username', password='$password', category='S'");
 
     if($query){
         echo 1;

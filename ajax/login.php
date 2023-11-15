@@ -9,7 +9,7 @@
 		$fetch 	= $mysqli->query("SELECT * FROM tbl_users WHERE username='$username' AND password='$password'");
 		$row 	= $fetch->fetch_array();
 		$_SESSION['user_id'] = $row['user_id'];
-		//$_SESSION['category_id'] = $row['category_id'];
+		$_SESSION['category'] = $row['category'];
 		
 		echo ($fetch->num_rows > 0)?1:0;
 
