@@ -298,7 +298,8 @@ body{
                             $new_message_badge = $count_messages>0?"<span class='badge bg-primary badge-number' id='new_message_badge_$user_list_row[user_id]'>$count_messages</span>":"";
 
                             echo "<li class='clearfix user_message<?=$user_list_row[user_id]?>' onclick='open_user_messages($user_list_row[user_id])'>
-                                    <img src='$profile_picture' alt='avatar'>
+                                    <img src='$profile_picture' style='object-fit: cover;height: 45px;width: 45px;
+                                }' alt='avatar'>
                                     <div class='about'>
                                         <div class='name'>".$user_list_row['user_fname']." ".$user_list_row['user_lname']." $new_message_badge</div> 
                                     </div>
