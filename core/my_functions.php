@@ -111,17 +111,17 @@ function countStudents(){
 	return $row['counter'];
 }
 
-function countOffenses(){
+function countServices(){
 	global $mysqli;
-	$fetch = $mysqli->query("SELECT count(offense_id) AS counter FROM tbl_offenses") or die(mysqli_error());
+	$fetch = $mysqli->query("SELECT count(services_id) AS counter FROM tbl_services") or die(mysqli_error());
 	$row = $fetch->fetch_array();
 	
 	return $row['counter'];
 }
 
-function countSanction(){
+function countCourses(){
 	global $mysqli;
-	$fetch = $mysqli->query("SELECT count(sanction_id) AS counter FROM tbl_sanctions") or die(mysqli_error());
+	$fetch = $mysqli->query("SELECT count(course_id) AS counter FROM tbl_courses") or die(mysqli_error());
 	$row = $fetch->fetch_array();
 	
 	return $row['counter'];

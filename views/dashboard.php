@@ -51,14 +51,14 @@
             <div class="col-xxl-3 col-md-6">
               <div class="card info-card sales-card">
                 <div class="card-body">
-                  <h5 class="card-title">NO. OF OFFENSES <span>| Today</span></h5>
+                  <h5 class="card-title">NO. OF SERVICES <span>| Today</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="ri-file-2-fill"></i>
                     </div>
                     <div class="ps-3">
-                      <h6><?=countOffenses()?></h6>
+                      <h6><?=countServices()?></h6>
                     </div>
                   </div>
                 </div>
@@ -68,14 +68,14 @@
             <div class="col-xxl-3 col-md-6">
               <div class="card info-card sales-card">
                 <div class="card-body">
-                  <h5 class="card-title">NO. OF SANCTIONS <span>| Today</span></h5>
+                  <h5 class="card-title">NO. OF COURSES <span>| Today</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="ri-file-fill"></i>
                     </div>
                     <div class="ps-3">
-                      <h6><?=countSanction()?></h6>
+                      <h6><?=countCourses()?></h6>
                     </div>
                   </div>
                 </div>
