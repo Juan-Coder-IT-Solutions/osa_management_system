@@ -29,6 +29,7 @@
 	                	<th scope="col"></th>
 	                    <th scope="col">Club Name</th>
                         <th scope="col">Date Added</th>
+                        <th scope="col">Cheklist Requirements</th>
 	                </tr>
 	            </thead>
                 <tbody>
@@ -41,12 +42,17 @@
     </section>
 </main><!-- End #main -->
 
-<?php require_once 'views/modals/add_club.php'; ?>
-<?php require_once 'views/modals/update_club.php'; ?>
+
+<?php 
+    require_once 'views/modals/update_club.php'; 
+    require_once 'views/modals/add_club.php';
+    require_once 'views/modals/view_checklist_requirements.php';
+?>
 
 <script type="text/javascript">
 $(document).ready(function() { 
 	get_datatable();
+    get_checklistReq();
 });
 
 $("#form_submit_update_form").submit(function(e){
@@ -169,6 +175,10 @@ $("#form_submit_add_form").submit(function(e){
       });
 });
 
+function checklistReq(id){
+    $("#viewCheckList").modal('show');
+}
+
 function get_datatable(){
     $("#datatable").DataTable().destroy();
     $("#datatable").DataTable({
@@ -195,7 +205,39 @@ function get_datatable(){
         },
         {
             "data":"date_added"
-        }
+        },
+        {   
+            "mRender":function(data, type, row){
+                return "<button class='btn btn-primary' style='padding: 5px 5px 5px 8px;' data-toggle='tooltip' title='Checklist Requirements' onclick='checklistReq("+row.club_id+")'><i class='bi bi-list'></i>Checklist</button>";
+            }
+        },
+        ]
+    });
+}
+
+
+function get_checklistReq(){
+    $("#checklist_datatable").DataTable().destroy();
+    $("#checklist_datatable").DataTable({
+        "responsive": true,
+        "processing": true,
+        "bFilter": false, 
+        "bInfo": false,
+        "ajax":{
+            "type":"POST",
+            "url":"ajax/datatables/checklist_requirements.php",
+            "dataSrc":"data", 
+        },
+        "columns":[
+        {
+            "mRender": function(data,type,row){
+                return "<input type='checkbox' class='delete_check_box' name='check_user' value='"+row.club_id+"'>";                
+            }
+        },
+        {
+            "data":"cr_desc"
+        },
+
         ]
     });
 }

@@ -9,7 +9,7 @@
 		$list = array();
 
 		$list['cr_id'] 			= $row['cr_id'];
-        $list['cr_desc'] 			= $row['cr_desc'];
+        $list['cr_desc'] 		= $row['cr_desc'];
 		$list['date_added'] 	= date("F j, Y h:i A",strtotime($row['date_added']));
 
 		array_push($response['data'], $list);
