@@ -177,6 +177,54 @@ $("#form_submit_add_form").submit(function(e){
 
 function checklistReq(id){
     $("#viewCheckList").modal('show');
+    $("#club_id").val(id);
+    get_aquiredChecklist();
+}
+
+function add_clubs_checklist(){
+    var club_id = $("#club_id").val();
+
+    var checkedValues = $('.check_requirements:checkbox:checked').map(function() {
+        return this.value;
+    }).get();
+    id = [];
+
+    Swal.fire({
+            title: 'Add',
+            text: "Are you sure you want to proceed?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Proceed'
+        }).then((result) => {
+            if(result.isConfirmed){
+                $.post("ajax/add_clubs_requirements.php",{
+                    id : checkedValues,
+                    club_id : club_id
+                },function(data){
+                   if(data == 1){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'All Good!',
+                        text: 'Rquirements Added Successfully',
+                    });
+                    get_aquiredChecklist();
+                   }else if(data == 2){
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Opps!',
+                        text: 'Requirements already aquired!',
+                    });
+                   }else{
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Opps!',
+                        text: 'Failed Query!',
+                    });
+                   }
+                    
+                });
+            }
+        })
 }
 
 function get_datatable(){
@@ -220,9 +268,10 @@ function get_checklistReq(){
     $("#checklist_datatable").DataTable().destroy();
     $("#checklist_datatable").DataTable({
         "responsive": true,
-        "processing": true,
+        "processing": false,
         "bFilter": false, 
         "bInfo": false,
+        "bPaginate": false,
         "ajax":{
             "type":"POST",
             "url":"ajax/datatables/checklist_requirements.php",
@@ -231,12 +280,40 @@ function get_checklistReq(){
         "columns":[
         {
             "mRender": function(data,type,row){
-                return "<input type='checkbox' class='delete_check_box' name='check_user' value='"+row.club_id+"'>";                
+                return "<input type='checkbox' class='check_requirements' name='check_requirements' value='"+row.cr_id+"'>";                
             }
         },
         {
             "data":"cr_desc"
+        }
+        ]
+    });
+}
+
+function get_aquiredChecklist(){
+    var club_id = $("#club_id").val();
+    $("#clubs_aquired_req").DataTable().destroy();
+    $("#clubs_aquired_req").DataTable({
+        "responsive": true,
+        "processing": false,
+        "bFilter": false, 
+        "bInfo": false,
+        "bPaginate": false,
+        "ajax":{
+            "type":"POST",
+            "url":"ajax/datatables/clubs_aquired_requirements.php",
+            "dataSrc":"data",
+            "data" : {
+                club_id:club_id
+            }
         },
+        "columns":[
+        {
+            "data":"cr_id"
+        },
+        {
+            "data":"date_added"
+        }
 
         ]
     });

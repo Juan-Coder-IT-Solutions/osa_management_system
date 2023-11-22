@@ -71,6 +71,14 @@ function clubName($club_id){
 	return $row["club_name"];
 }
 
+function checklistRequirementsName($cr_id){
+	global $mysqli;
+	$fetch = $mysqli->query("SELECT * FROM tbl_checklist_requirements WHERE cr_id='$cr_id'") or die(mysqli_error());
+	$row = $fetch->fetch_array();
+
+	return $row["cr_desc"];
+}
+
 
 function usernameChecker($username,$update_user_id){
 	global $mysqli;
