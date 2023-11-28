@@ -32,12 +32,19 @@
 
           <hr>
 
+          <div div class="col-sm-12" style="padding: 10px;">
+            <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="float: right;">
+                <button type="button" class="btn btn-danger" onclick="delete_aquired_requirements()">Delete</button>
+              </div>
+          </div>
+
           <div class="card">
             <div class="card-body">
             <h5 class="card-title">AQUIRED</h5>
               <table class="table" style="width: 100%;" id="clubs_aquired_req">
                 <thead>
                   <tr>
+                    <th><input type="checkbox" onchange="checkAll(this, 'acquired_check_requirements')"></th>
                     <th> Requirements</th>
                     <th> Date Aquired</th>
                   </tr>

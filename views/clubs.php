@@ -52,7 +52,6 @@
 <script type="text/javascript">
 $(document).ready(function() { 
 	get_datatable();
-    get_checklistReq();
 });
 
 $("#form_submit_update_form").submit(function(e){
@@ -178,6 +177,7 @@ $("#form_submit_add_form").submit(function(e){
 function checklistReq(id){
     $("#viewCheckList").modal('show');
     $("#club_id").val(id);
+    get_checklistReq();
     get_aquiredChecklist();
 }
 
@@ -207,7 +207,7 @@ function add_clubs_checklist(){
                         title: 'All Good!',
                         text: 'Rquirements Added Successfully',
                     });
-                    get_aquiredChecklist();
+                    
                    }else if(data == 2){
                     Swal.fire({
                         icon: 'warning',
@@ -221,7 +221,8 @@ function add_clubs_checklist(){
                         text: 'Failed Query!',
                     });
                    }
-                    
+                get_checklistReq();
+                get_aquiredChecklist();
                 });
             }
         })
@@ -265,6 +266,7 @@ function get_datatable(){
 
 
 function get_checklistReq(){
+    var club_id = $("#club_id").val();
     $("#checklist_datatable").DataTable().destroy();
     $("#checklist_datatable").DataTable({
         "responsive": true,
@@ -275,7 +277,10 @@ function get_checklistReq(){
         "ajax":{
             "type":"POST",
             "url":"ajax/datatables/checklist_requirements.php",
-            "dataSrc":"data", 
+            "dataSrc":"data",
+            "data":{
+                club_id:club_id
+            },
         },
         "columns":[
         {
@@ -288,6 +293,43 @@ function get_checklistReq(){
         }
         ]
     });
+}
+
+function delete_aquired_requirements(){
+    var checkedValues = $('.acquired_check_requirements:checkbox:checked').map(function() {
+        return this.value;
+    }).get();
+    id = [];
+
+    Swal.fire({
+        title: 'Delete',
+        text: "Are you sure you want to proceed?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Proceed'
+    }).then((result) => {
+        if(result.isConfirmed){
+            $.post("ajax/delete_aquired_requirements.php",{
+                id:checkedValues
+            },function(data){
+                if(data == 1){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'All Good!',
+                        text: 'Rquirements Deleted Successfully',
+                    });
+                }else{
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Opps!',
+                        text: 'Failed Query!',
+                    });
+                }
+                get_checklistReq();
+                get_aquiredChecklist();
+            }); 
+        }
+    })
 }
 
 function get_aquiredChecklist(){
@@ -308,6 +350,11 @@ function get_aquiredChecklist(){
             }
         },
         "columns":[
+        {
+            "mRender": function(data,type,row){
+                return "<input type='checkbox' class='acquired_check_requirements' name='acquired_check_requirements' value='"+row.id+"'>";
+            }
+        },
         {
             "data":"cr_id"
         },
