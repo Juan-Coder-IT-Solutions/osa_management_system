@@ -10,8 +10,7 @@
 	$category		= $mysqli -> real_escape_string($_POST['category']);
 	$address		= $mysqli -> real_escape_string($_POST['address']);
 	$username 		= $mysqli -> real_escape_string($_POST['username']);
-	$password_ 		= $mysqli -> real_escape_string($_POST['password']);
-	$password 		= md5($password_);
+	$password 		= md5($mysqli -> real_escape_string($_POST['password']));
 	
 	if(usernameChecker($username,0)==0){
 		$mysqli->query("INSERT INTO tbl_users SET user_fname = '$user_fname', user_mname = '$user_mname', user_lname = '$user_lname', user_gender = '$gender', user_address = '$address', user_birthdate = '$birthdate', user_contact_num = '$contact_number', course_id = '$course_id', category = '$category',  username = '$username', password = '$password'") OR die(mysql_error());

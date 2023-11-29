@@ -276,7 +276,7 @@ function get_checklistReq(){
         "bPaginate": false,
         "ajax":{
             "type":"POST",
-            "url":"ajax/datatables/checklist_requirements.php",
+            "url":"ajax/datatables/clubs_checklist_requirements.php",
             "dataSrc":"data",
             "data":{
                 club_id:club_id

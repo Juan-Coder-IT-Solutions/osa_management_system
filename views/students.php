@@ -18,7 +18,23 @@
 	                	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAdd">Add</button>
 	                	<button type="button" class="btn btn-danger" onclick="delete_entry()">Delete</button>
 	              	</div>
-            	</div> <br><br><br>
+            	</div>
+
+                <div class="col-sm-4">
+            		<label class="form-label">Course</label>
+	                  <select id="course_id" class="form-select" onchange="get_datatable()">
+                        <option value=''>-- Select Course--</option>
+	                    <?php 
+	                    	$fetch = $mysqli->query("SELECT * FROM tbl_courses ORDER BY course_name ASC") or die(mysqli_error());
+							while ($row = $fetch->fetch_array()) {
+								echo "<option value='$row[course_id]'>$row[course_name]</option>";
+							}
+	                    ?>
+	                </select>
+            	</div>
+
+
+                <br><br><br>
 
               	<!-- Table with stripped rows -->
               	<table class="table table-striped datatable" id="datatable">
@@ -27,10 +43,9 @@
 	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check_students')"></th>
 	                	<th scope="col"></th>
 	                    <th scope="col">Full Name</th>
-                      <th scope="col">Student Code</th>
 	                    <th scope="col">Gender</th>
-                      <th scope="col">Course</th>
-                      <th scope="col">Contact #</th>
+                        <th scope="col">Course</th>
+                        <th scope="col">Contact #</th>
 	                    <th scope="col">Date Added</th>
 	                </tr>
 	            </thead>
@@ -50,7 +65,20 @@
 <script type="text/javascript">
 $(document).ready(function() { 
 	get_datatable();
+    $("#icon").html("<span class='ri-eye-line'></span>");
 });
+
+function show_pass(){
+    var x = document.getElementById("password");
+
+    if(x.type === "password"){
+        x.type = "text";
+        $("#icon").html("<span class='ri-eye-off-fill'></span>");
+    }else{
+        x.type = "password";
+        $("#icon").html("<span class='ri-eye-line'></span>");
+    }
+}
 
 $("#form_submit_update_form").submit(function(e){
     e.preventDefault();
@@ -187,6 +215,7 @@ $("#form_submit_add_form").submit(function(e){
 });
 
 function get_datatable(){
+    var course_id = $("#course_id").val();
  	$("#datatable").DataTable().destroy();
 	$("#datatable").DataTable({
 	    "responsive": true,
@@ -194,7 +223,10 @@ function get_datatable(){
 	    "ajax":{
 	        "type":"POST",
 	        "url":"ajax/datatables/students.php",
-	        "dataSrc":"data", 
+	        "dataSrc":"data",
+            "data":{
+                course_id:course_id
+            } 
 	    },
 	    "columns":[
 	    {
@@ -210,9 +242,6 @@ function get_datatable(){
 	    {
 	        "data":"name"
 	    },
-        {
-            "data":"student_code"
-        },
 	    {
 	        "data":"student_gender"
 	    },
