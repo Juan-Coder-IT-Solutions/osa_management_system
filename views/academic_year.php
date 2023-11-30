@@ -143,17 +143,19 @@ function delete_entry(){
 
 
 $("#form_submit_add_form").submit(function(e){
+  e.preventDefault();
+  $("#form_btn_add_form").prop('disabled', true);
   $.ajax({
     type:"POST",
     url:"ajax/add_academic_year.php",
     data:$("#form_submit_add_form").serialize(),
     success:function(data){
       if(data==1){
-          Swal.fire({
-              icon: 'success',
-              title: 'All Good!',
-              text: 'Academic Year Added Successfully',
-          });
+        Swal.fire({
+            icon: 'success',
+            title: 'All Good!',
+            text: 'Academic Year Added Successfully',
+        });
         $('#form_submit_add_form')[0].reset();
         get_datatable();
       }else{
