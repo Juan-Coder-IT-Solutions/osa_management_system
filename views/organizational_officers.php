@@ -39,7 +39,7 @@
                 <thead>
 	                <tr>
 	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check')"></th>
-	                	<th scope="col"></th>
+	                	<th scope="col" style="color:transparent;">--------</th>
                         <th scope="col">Club</th>
 	                    <th scope="col">Student</th>
                         <th scope="col">Type</th>
@@ -57,8 +57,11 @@
     </section>
 </main><!-- End #main -->
 
-<?php require_once 'views/modals/add_organizational_officers.php'; ?>
-<?php require_once 'views/modals/update_organizational_officers.php'; ?>
+<?php 
+    require_once 'views/modals/add_organizational_officers.php';
+    require_once 'views/modals/update_organizational_officers.php'; 
+    require_once 'views/modals/view_checklist_requirements.php';
+ ?>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -212,7 +215,7 @@ function get_datatable(){
         },
         {
             "mRender":function(data, type, row){
-                return "<button class='btn btn-success' style='padding: 5px 5px 5px 8px;' data-toggle='tooltip' title='Update Record' onclick='show_details_modal("+row.of_id+")'><i class='bi bi-pencil-square'></i></button>";
+                return "<button class='btn btn-success' style='padding: 5px 5px 5px 8px;' data-toggle='tooltip' title='Update Record' onclick='show_details_modal("+row.of_id+")'><i class='bi bi-pencil-square'></i></button> <button class='btn btn-primary' style='padding: 5px 5px 5px 8px;' data-toggle='tooltip' title='Checklist Requirements' onclick='checklistReq("+row.of_id+")'><i class='bi bi-card-checklist'></i></button>";
             }
         },
         {
@@ -232,5 +235,219 @@ function get_datatable(){
         }
         ]
     });
+}
+
+function checklistReq(id){
+    $("#viewCheckList").modal('show');
+    $("#of_id").val(id);
+    get_checklistReq();
+    get_aquiredChecklist();
+}
+
+function add_clubs_checklist(cr_id){
+	var of_id = $("#of_id").val();
+
+	 	 var formData = new FormData();
+
+	 	 $(".file-"+cr_id+"-"+of_id).each(function() {
+		    formData.append("file", this.files[0]);
+		});
+
+	 	formData.append("of_id",of_id);
+	 	formData.append("cr_id",cr_id);
+
+    	$.ajax({
+		    url: 'ajax/add_clubs_requirements.php',
+		    data: formData,
+		    type: 'POST',
+		    contentType: false, 
+		    processData: false,
+		    success : function(data){
+		    	if(data == 1){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'All Good!',
+                        text: 'Rquirements Added Successfully',
+                    });
+                    
+                   }else if(data == 2){
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Opps!',
+                        text: 'Requirements already aquired!',
+                    });
+                   }else{
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Opps!',
+                        text: 'Failed Query!',
+                    });
+                   }
+                get_checklistReq();
+                get_aquiredChecklist();
+		    }
+		});
+   
+
+    
+
+    // var checkedValues = $('.check_requirements:checkbox:checked').map(function() {
+    //     return this.value;
+    // }).get();
+    // id = [];
+
+    // Swal.fire({
+    //         title: 'Add',
+    //         text: "Are you sure you want to proceed?",
+    //         icon: 'question',
+    //         showCancelButton: true,
+    //         confirmButtonText: 'Proceed'
+    //     }).then((result) => {
+    //         if(result.isConfirmed){
+    //             $.post("ajax/add_clubs_requirements.php",{
+    //                 id : checkedValues,
+    //                 of_id : of_id
+    //             },function(data){
+    //             	alert(data);
+    //             //    if(data == 1){
+    //             //     Swal.fire({
+    //             //         icon: 'success',
+    //             //         title: 'All Good!',
+    //             //         text: 'Rquirements Added Successfully',
+    //             //     });
+                    
+    //             //    }else if(data == 2){
+    //             //     Swal.fire({
+    //             //         icon: 'warning',
+    //             //         title: 'Opps!',
+    //             //         text: 'Requirements already aquired!',
+    //             //     });
+    //             //    }else{
+    //             //     Swal.fire({
+    //             //         icon: 'warning',
+    //             //         title: 'Opps!',
+    //             //         text: 'Failed Query!',
+    //             //     });
+    //             //    }
+    //             // get_checklistReq();
+    //             // get_aquiredChecklist();
+    //             });
+    //         }
+    //     })
+}
+
+function get_checklistReq(){
+    var of_id = $("#of_id").val();
+    $("#checklist_datatable").DataTable().destroy();
+    $("#checklist_datatable").DataTable({
+        "responsive": true,
+        "processing": false,
+        "bFilter": false, 
+        "bInfo": false,
+        "bPaginate": false,
+        "ajax":{
+            "type":"POST",
+            "url":"ajax/datatables/clubs_checklist_requirements.php",
+            "dataSrc":"data",
+            "data":{
+                of_id:of_id
+            },
+        },
+        "columns":[
+        {
+            "mRender": function(data,type,row){
+                return "<button class='btn btn-primary' onclick='add_clubs_checklist("+row.cr_id+")'><span class='bi bi-check-circle'></span></button>";                
+            }
+        },
+        {
+            "data":"cr_desc"
+        },
+        {
+            "mRender": function(data,type,row){
+                return "<input type='file' class='form-control file-"+row.cr_id+"-"+of_id+"' >";                
+            }
+        }
+        ]
+    });
+}
+
+function delete_aquired_requirements(){
+    var checkedValues = $('.acquired_check_requirements:checkbox:checked').map(function() {
+        return this.value;
+    }).get();
+    id = [];
+
+    Swal.fire({
+        title: 'Delete',
+        text: "Are you sure you want to proceed?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Proceed'
+    }).then((result) => {
+        if(result.isConfirmed){
+            $.post("ajax/delete_aquired_requirements.php",{
+                id:checkedValues
+            },function(data){
+                if(data == 1){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'All Good!',
+                        text: 'Rquirements Deleted Successfully',
+                    });
+                }else{
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Opps!',
+                        text: 'Failed Query!',
+                    });
+                }
+                get_checklistReq();
+                get_aquiredChecklist();
+            }); 
+        }
+    })
+}
+
+function get_aquiredChecklist(){
+    var of_id = $("#of_id").val();
+    $("#clubs_aquired_req").DataTable().destroy();
+    $("#clubs_aquired_req").DataTable({
+        "responsive": true,
+        "processing": false,
+        "bFilter": false, 
+        "bInfo": false,
+        "bPaginate": false,
+        "ajax":{
+            "type":"POST",
+            "url":"ajax/datatables/clubs_aquired_requirements.php",
+            "dataSrc":"data",
+            "data" : {
+                of_id:of_id
+            }
+        },
+        "columns":[
+        {
+            "mRender": function(data,type,row){
+                return "<input type='checkbox' class='acquired_check_requirements' name='acquired_check_requirements' value='"+row.id+"'>";
+            }
+        },
+         {
+            "mRender": function(data,type,row){
+                return "<a class='btn btn-primary' href=\"assets/uploaded_files/"+row.attached_file+"\" download><span class='bi bi-download'></span></a>";
+            }
+        },
+        {
+            "data":"cr_id"
+        },
+        {
+            "data":"date_added"
+        }
+
+        ]
+    });
+}
+
+function download_file(attached_file){
+	window.location = "assets/uploaded_files/"+attached_file;
 }
 </script>

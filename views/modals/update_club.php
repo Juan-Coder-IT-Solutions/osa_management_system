@@ -15,6 +15,17 @@
                         <input type="text" id="update_club_name" name="update_club_name" class="form-control" required>
                         </div>
                     </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Club Type</label>
+                        <div class="input-group has-validation">
+                        <select class="form-control" name="update_club_type" id="update_club_type">
+                        	<option>-Please Choose-</option>
+                        	<option value="Academic">Academic</option>
+                        	<option value="Non-academic">Non-academic</option>
+                        </select>
+                        </div>
+                    </div>
 				</div>
 				<div class="modal-footer">
 				  	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

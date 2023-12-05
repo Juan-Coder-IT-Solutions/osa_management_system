@@ -9,6 +9,7 @@
 		$list = array();
 		$list['ay_id'] = $row['ay_id'];
 		$list['ay_name'] = $row['ay_name'];
+		$list['ay_desc'] = $row['ay_desc'];
 		$list['date_added'] = $row['date_added'];
 
 		array_push($response, $list);

@@ -10,6 +10,7 @@
 
 		$list['club_id'] 	= $row['club_id'];
 		$list['club_name']  = $row['club_name'];
+		$list['club_type']  = $row['club_type'];
 		$list['date_added'] = date("F j, Y h:i A",strtotime($row['date_added']));
 
 		array_push($response['data'], $list);

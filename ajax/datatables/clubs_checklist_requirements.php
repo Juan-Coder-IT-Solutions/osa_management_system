@@ -1,8 +1,8 @@
 <?php
 	include '../../core/config.php';
-	$club_id = $_POST['club_id'];
+	$of_id = $_POST['of_id'];
 
-	$fetch_cr = $mysqli->query("SELECT cr_id FROM tbl_clubs_requirements WHERE club_id = '$club_id'") or die(mysqli_error());
+	$fetch_cr = $mysqli->query("SELECT cr_id FROM tbl_clubs_requirements WHERE of_id = '$of_id'") or die(mysqli_error());
 	
 	if($fetch_cr->num_rows > 0){
 		$cr_checker = array();

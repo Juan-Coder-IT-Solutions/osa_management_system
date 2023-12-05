@@ -15,6 +15,13 @@
 	                        <input type="text" id="update_ay_name" name="update_ay_name" class="form-control" required>
 	                      </div>
 	                    </div>
+
+	                    <div class="col-12">
+	                      <label class="form-label">Description</label>
+	                      <div class="input-group has-validation">
+	                        <textarea id="update_ay_desc" name="update_ay_desc" class="form-control"></textarea>
+	                      </div>
+	                    </div>
 				</div>
 				<div class="modal-footer">
 				  	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

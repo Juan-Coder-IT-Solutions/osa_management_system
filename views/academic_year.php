@@ -28,6 +28,7 @@
 	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check_user')"></th>
 	                	<th scope="col"></th>
 	                    <th scope="col">Academic Year</th>
+                      <th scope="col">Description</th>
 	                    <th scope="col">Date Added</th>
 	                </tr>
 	            </thead>
@@ -101,6 +102,7 @@ function show_details_modal(primary_id){
            	var get_data = JSON.parse(data);
             $("#update_ay_id").val(get_data[0].ay_id);
             $("#update_ay_name").val(get_data[0].ay_name);
+            $("#update_ay_desc").val(get_data[0].ay_desc);
     });
 }
 
@@ -195,6 +197,9 @@ function get_datatable(){
 	    {
 	        "data":"name"
 	    },
+      {
+          "data":"description"
+      },
 	    {
 	        "data":"date_added"
 	    }

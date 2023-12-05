@@ -9,6 +9,7 @@
 		$list = array();
 		$list['club_id'] = $row['club_id'];
 		$list['club_name'] = $row['club_name'];
+		$list['club_type'] = $row['club_type'];
 		
 		array_push($response, $list);
 	}

@@ -27,7 +27,8 @@
 	                <tr>
 	                	<th scope="col"><input type="checkbox" onchange="checkAll(this, 'check_services')"></th>
 	                	<th scope="col"></th>
-	                  <th scope="col">Service Description</th>
+	                  <th scope="col">Service</th>
+                    <th scope="col">Description</th>
 	                  <th scope="col">Date Added</th>
 	                </tr>
 	            </thead>
@@ -101,6 +102,7 @@ function show_details_modal(primary_id){
            	var get_data = JSON.parse(data);
             $("#update_services_id").val(get_data[0].services_id);
             $("#update_services_desc").val(get_data[0].services_desc);
+            $("#update_services_remarks").val(get_data[0].services_remarks);
     });
 }
 
@@ -193,6 +195,9 @@ function get_datatable(){
 	    {
 	        "data":"services_desc"
 	    },
+      {
+          "data":"services_remarks"
+      },
       {
           "data":"date_added"
       }

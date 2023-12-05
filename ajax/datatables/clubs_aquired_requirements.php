@@ -1,7 +1,7 @@
 <?php
 	include '../../core/config.php';
-    $club_id = $_POST['club_id'];
-	$fetch = $mysqli->query("SELECT * FROM tbl_clubs_requirements WHERE club_id = '$club_id'") or die(mysqli_error());
+    $of_id = $_POST['of_id'];
+	$fetch = $mysqli->query("SELECT * FROM tbl_clubs_requirements WHERE of_id = '$of_id'") or die(mysqli_error());
 
 	$response['data'] = array();
 	$count = 1;
@@ -9,6 +9,7 @@
 		$list = array();
 
 		$list['id'] 			= $row['id'];
+		$list['attached_file'] 			= $row['attached_file'];
         $list['cr_id'] 		    = checklistRequirementsName($row['cr_id']);
 		$list['date_added'] 	= date("F j, Y h:i A",strtotime($row['date_added']));
 

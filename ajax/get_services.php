@@ -9,6 +9,7 @@
 		$list = array();
 		$list['services_id'] = $row['services_id'];
 		$list['services_desc'] = $row['services_desc'];
+		$list['services_remarks'] = $row['services_remarks'];
 		
 		array_push($response, $list);
 	}

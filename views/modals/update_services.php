@@ -10,10 +10,17 @@
                     <input type="hidden" id="update_services_id" name="update_services_id">
 
                     <div class="col-12">
-                        <label class="form-label">Service Description</label>
+                        <label class="form-label">Service</label>
                         <div class="input-group has-validation">
-                        <input type="text" id="update_services_desc" name="update_services_desc" class="form-control" required>
+                        	<input type="text" id="update_services_desc" name="update_services_desc" class="form-control" required>
                         </div>
+
+                        <div class="col-12">
+							<label class="form-label">Description</label>
+							<div class="input-group">
+								<textarea id="update_services_remarks" name="update_services_remarks" class="form-control"></textarea>
+							</div>
+						</div>	
                     </div>
 
 				</div>

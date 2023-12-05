@@ -10,6 +10,7 @@
 
 		$list['ay_id'] 	= $row['ay_id'];
 		$list['name'] 		= $row['ay_name'];
+		$list['description'] = $row['ay_desc'];
 		$list['date_added'] = date("F j, Y h:i A",strtotime($row['date_added']));
 
 		array_push($response['data'], $list);

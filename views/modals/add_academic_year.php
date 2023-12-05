@@ -14,6 +14,15 @@
 							</div>
 						</div>	                    
 					</div>
+
+					<div class="modal-body">
+						<div class="col-12">
+							<label class="form-label">Description</label>
+							<div class="input-group">
+								<textarea name="ay_desc" class="form-control" ></textarea>
+							</div>
+						</div>	                    
+					</div>
 					
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
