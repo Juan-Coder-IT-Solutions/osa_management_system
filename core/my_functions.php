@@ -136,5 +136,13 @@ function countCourses(){
 
 }
 
+function countChecklistByStudent($cr_id,$of_id){
+	global $mysqli;
+	$fetch = $mysqli->query("SELECT count(id) AS counter FROM tbl_clubs_requirements WHERE cr_id='$cr_id' AND of_id='$of_id'") or die(mysqli_error());
+	$row = $fetch->fetch_array();
+
+	return $row['counter'];
+}
+
 
 ?>

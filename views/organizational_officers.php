@@ -199,6 +199,10 @@ function get_datatable(){
     $("#datatable").DataTable({
         "responsive": true,
         "processing": true,
+        dom: 'Bfrtip',
+        buttons: [
+            'print'
+        ],
         "ajax":{
             "type":"POST",
             "url":"ajax/datatables/organizational_officers.php",

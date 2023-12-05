@@ -119,6 +119,15 @@
           <span>Users</span>
         </a>
       </li>
+
+      <li class="nav-heading">Report</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.php?page=checklist_report">
+          <i class="bi bi-list"></i>
+          <span>Checklist Report</span>
+        </a>
+      </li>
       <?php } ?>
     </ul>
 

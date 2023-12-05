@@ -35,6 +35,8 @@
 		require_once $view.'messages.php';
 	}else if($page == 'clubs'){
 		require_once $view.'clubs.php';
+	}else if($page == 'checklist_report'){
+		require_once $view.'checklist_report.php';
 	}else{
 		require $view.'404.php';
 	}

@@ -42,10 +42,11 @@
 
 <body>
   <!-- ======= Template Main JS File ======= -->
-   
   <script src="assets/js/main2.js"></script>
   <script src="assets/datatables/jquery.dataTables.min.js"></script>
   <script src="assets/vendor/sweet-alert/sweetalert2.all.min.js"></script>
+ <script src="assets/datatables/dataTables.buttons.min.js"></script>
+ <script src="assets/datatables/buttons.print.min.js"></script>
 
   <!-- ======= Header ======= -->
   <?php require_once 'components/topbar.php' ?>

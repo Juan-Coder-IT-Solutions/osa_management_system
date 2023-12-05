@@ -20,7 +20,7 @@
                         <label class="form-label">Club Type</label>
                         <div class="input-group has-validation">
                         <select class="form-control" name="update_club_type" id="update_club_type">
-                        	<option>-Please Choose-</option>
+                        	<option>--Select Club Type--</option>
                         	<option value="Academic">Academic</option>
                         	<option value="Non-academic">Non-academic</option>
                         </select>
