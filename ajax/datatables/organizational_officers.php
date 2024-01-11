@@ -3,7 +3,9 @@
 
 	$ay_id = $_POST['ay_id'];
 
-	$fetch = $mysqli->query("SELECT * FROM tbl_organizational_officers WHERE ay_id='$ay_id' ") or die(mysqli_error());
+	$filter = ($ay_id == "")?"":"WHERE ay_id='$ay_id' ";
+
+	$fetch = $mysqli->query("SELECT * FROM tbl_organizational_officers $filter") or die(mysqli_error());
 
 	$response['data'] = array();
 	while ($row = $fetch->fetch_array()) {

@@ -17,6 +17,7 @@
             	<div class="col-sm-12" style="padding: 10px;">
             		<div class="btn-group" role="group" aria-label="Basic mixed styles example" style="float: right;">
 	                	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAdd">Add</button>
+                        <button type="button" class="btn btn-warning" onclick="window.location.href='views/print_clubs.php'"> Print</button>
 	                	<button type="button" class="btn btn-danger" onclick="delete_entry()">Delete</button>
 	              	</div>
             	</div> <br><br><br>
@@ -43,7 +44,7 @@
 </main><!-- End #main -->
 
 
-<?php 
+<?php
     require_once 'views/modals/update_club.php'; 
     require_once 'views/modals/add_club.php';
     require_once 'views/modals/view_checklist_requirements.php';
@@ -180,10 +181,6 @@ function get_datatable(){
     $("#datatable").DataTable({
         "responsive": true,
         "processing": true,
-        dom: 'Bfrtip',
-        buttons: [
-            'print'
-        ],
         "ajax":{
             "type":"POST",
             "url":"ajax/datatables/clubs.php",

@@ -17,6 +17,7 @@
             	<div class="col-sm-12" style="padding: 10px;">
             		<div class="btn-group" role="group" aria-label="Basic mixed styles example" style="float: right;">
 	                	<button type="button" class="btn btn-primary" onclick="add_entry()">Add</button>
+                        <button type="button" class="btn btn-warning" onclick="window.location.href='views/print_organizational_officers.php'"> Print</button>
 	                	<button type="button" class="btn btn-danger" onclick="delete_entry()">Delete</button>
 	              	</div>
             	</div> 
@@ -181,6 +182,7 @@ $("#form_submit_add_form").submit(function(e){
             	$('#form_submit_add_form')[0].reset();
             	get_datatable();
             }else{
+                alert(data);
             	Swal.fire({
                     icon: 'warning',
                     title: 'Opps!',
@@ -199,10 +201,6 @@ function get_datatable(){
     $("#datatable").DataTable({
         "responsive": true,
         "processing": true,
-        dom: 'Bfrtip',
-        buttons: [
-            'print'
-        ],
         "ajax":{
             "type":"POST",
             "url":"ajax/datatables/organizational_officers.php",
